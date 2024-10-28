@@ -1,102 +1,97 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;               // 移動速度
-    public float jumpForce = 10f;             // 跳躍力度
-    public Transform groundCheck;              // 地面檢查的 Transform
-    public float groundCheckRadius = 0.1f;     // 地面檢查的半徑
-    public LayerMask groundLayer;              // 地面層
-    public float CharacterSize = 0.3f;         // 角色大小
+    public float moveSpeed = 5f;       // 移動速度
+    public float jumpForce = 10f;      // 跳躍力
+    public LayerMask groundLayer;      // 定義地面圖層
+    public float CharacterSize = 0.5f; // 角色大小
+    public float GScale = 3;           // 重力大小  
+    
+    
+    private Rigidbody2D rb;
+    private bool isGrounded;           // 判斷是否在地面上
+    private bool isFloating = false;           // 判斷是否在能浮空
 
-    public float GScale = 3;
-
-    private bool isGrounded;                   // 角色是否在地面上
-    private bool noGravityMode = false;        // 是否無重力模式
-    private Rigidbody2D rb;                    // 角色的 Rigidbody2D
-
-    private bool canJump = true;                // 是否可以跳躍
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>(); // 獲取 Rigidbody2D 組件
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        // 檢查是否無重力模式
-        if (noGravityMode)
+
+        if (isFloating)
         {
-            // 自由上下左右移動
             rb.gravityScale = 0;
-            float moveInputX = Input.GetAxis("Horizontal");
-            float moveInputY = Input.GetAxis("Vertical");
-            rb.velocity = new Vector2(moveInputX * moveSpeed, moveInputY * moveSpeed);
+
+            // 控制上下移動
+            float moveInputVertical = Input.GetAxis("Vertical");
+            rb.velocity = new Vector2(rb.velocity.x, moveInputVertical * moveSpeed);
+            
+            // 可以在這裡添加左右移動，若想要在浮空時也能左右移動
+            float moveInputHorizontal = Input.GetAxis("Horizontal");
+            rb.velocity = new Vector2(moveInputHorizontal * moveSpeed, rb.velocity.y);
         }
-        else
-        {
-            
+        else{
             rb.gravityScale = GScale;
+            // 左右移動
+            // float moveInput = Input.GetAxis("Horizontal");
+            RaycastHit2D hitLeft = Physics2D.Raycast(transform.position + new Vector3(-0.5f, 0, 0), Vector2.left, 0.5f);
+            RaycastHit2D hitRight = Physics2D.Raycast(transform.position + new Vector3(0.5f, 0, 0), Vector2.right, 0.5f);
 
-            // 使用 Circle 檢查是否在地面上
-            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-            
-            // 獲取左右移動輸入
-            float moveInput = Input.GetAxis("Horizontal");
-            rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+            if ((hitLeft.collider != null && rb.velocity.x < 0) || (hitRight.collider != null && rb.velocity.x < 0))
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y); // 禁用水平移動
+            }
+            else
+            {
+                // 正常移動
+                float moveInput = Input.GetAxis("Horizontal");
+                rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+            }
 
-            // 跳躍邏輯
+            if (Input.GetAxis("Horizontal") > 0)
+            {
+                transform.localScale = new Vector3(CharacterSize, CharacterSize, CharacterSize);  // 面朝右
+            }
+            else if (Input.GetAxis("Horizontal") < 0)
+            {
+                transform.localScale = new Vector3(-CharacterSize, CharacterSize, CharacterSize); // 面朝左
+            }
+
+            // 跳躍
             if (isGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce); // 設置跳躍力度
-                isGrounded = false; // 跳躍後設為不在地面
-                Debug.Log("已跳躍" + isGrounded);
-            }
-
-            // 確保角色不會穿過地面
-            if (transform.position.y <= groundCheck.position.y)
-            {
-                transform.position = new Vector3(transform.position.x, groundCheck.position.y, transform.position.z);
-                Debug.Log("角色已重置到地面");
             }
         }
-
-        // 調整角色面朝方向
-        if (Input.GetAxis("Horizontal") > 0)
-            transform.localScale = new Vector3(CharacterSize, CharacterSize, CharacterSize);  // 面朝右
-        else if (Input.GetAxis("Horizontal") < 0)
-            transform.localScale = new Vector3((-1 * CharacterSize), CharacterSize, CharacterSize); // 面朝左
+        
     }
 
-    private void FixedUpdate()
+
+    // 當角色與地面（Tilemap）接觸時觸發
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!noGravityMode)
+        if (((1 << collision.gameObject.layer) & groundLayer) != 0) // 使用 Layer 檢查是否為地面
         {
-            // 使用 Circle 檢查是否在地面上
-            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-            Debug.Log("isGrounded: " + isGrounded);
+            isGrounded = true; // 設定為在地面上
         }
     }
 
-    // 偵測碰撞道具 X 的觸發方法
-    private void OnTriggerEnter2D(Collider2D other)
+    // 當角色離開地面（Tilemap）時觸發
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (other.gameObject.CompareTag("FloatItem")) // 檢查是否是道具 X
+        if (((1 << collision.gameObject.layer) & groundLayer) != 0) // 使用 Layer 檢查是否為地面
         {
-            Debug.Log("FloatItem picked up!");
-            noGravityMode = true; // 啟用無重力模式
-            rb.gravityScale = 0;  // 關閉重力
-            transform.localScale = new Vector3(1, 1, 1);
+            isGrounded = false; // 設定為離開地面
         }
     }
-
-    private void OnTriggerExit2D(Collider2D other)
+    
+    public void CollectFloatItem()
     {
-        if (other.gameObject.CompareTag("FloatItem")) // 檢查是否結束道具 X 的效果
-        {
-            noGravityMode = false; // 恢復重力模式
-            rb.gravityScale = GScale;   // 開啟重力
-            transform.localScale = new Vector3(1, 1, 1);
-        }
+        isFloating = !isFloating; // 切換浮空狀態
     }
+    
 }
