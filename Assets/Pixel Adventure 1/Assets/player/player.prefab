@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2441699114473173186}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,3 +177,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   CharacterSize: 0.5
+  GScale: 3
+  groundCheck: {fileID: 0}
+  checkRadius: 0.1
