@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;      // 定義地面圖層
     public float CharacterSize = 0.5f; // 角色大小
     public float GScale = 3;           // 重力大小  
+
+    public Transform groundCheck;
+    public float checkRadius = 0.1f;  // 檢測範圍
     
     
     private Rigidbody2D rb;
@@ -22,6 +25,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
+
+        
         if (isFloating)
         {
             rb.gravityScale = 0;
@@ -36,23 +42,9 @@ public class PlayerController : MonoBehaviour
         }
         else{
             rb.gravityScale = GScale;
-            // 左右移動
-            // float moveInput = Input.GetAxis("Horizontal");
-            // RaycastHit2D hitLeft = Physics2D.Raycast(transform.position + new Vector3(-0.9f, 0, 0), Vector2.left, 0.9f);
-            // RaycastHit2D hitRight = Physics2D.Raycast(transform.position + new Vector3(0.5f, 0, 0), Vector2.right, 0.5f);
+            float moveInput = Input.GetAxisRaw("Horizontal");
+            rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
-            // if ((hitLeft.collider != null && rb.velocity.x < 0) || (hitRight.collider != null && rb.velocity.x < 0))
-            // {
-            //     if(hitLeft.collider != null)
-            //         Debug.Log("Dont move");
-            //     rb.velocity = new Vector2(0, rb.velocity.y); // 禁用水平移動
-            // }
-            // else
-            // {
-                // 正常移動
-                float moveInput = Input.GetAxisRaw("Horizontal");
-                rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
-            // }
 
             if (Input.GetAxis("Horizontal") > 0)
             {
