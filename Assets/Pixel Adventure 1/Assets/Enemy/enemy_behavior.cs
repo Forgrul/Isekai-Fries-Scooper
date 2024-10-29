@@ -9,27 +9,53 @@ public class EnemyController : MonoBehaviour
 
     private Vector2 startPosition;       // 初始位置
     private bool movingRight = true;     // 是否向右移動
-    private bool isFloating = true;     // 是否處於浮空狀態
+    private bool isFloating
+    {
+        get { return GameManager.Instance.GetFloatStatus(); }
+    }     // 是否處於浮空狀態
     private float floatTimer = 0f;       // 計時器
     private int floatDirection = 0;      // 浮空方向 (0: 向右, 1: 向上, 2: 向左, 3: 向下)
 
+    public GameObject bullet;
+    public float fireInterval = 3f;  // 發射間隔
+    public float bulletSpeed = 3f;  // 子彈速度
+
+    private float fireTimer;
     private Rigidbody2D rb;
+    private float tmp = 0.2f;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         startPosition = transform.position;
+        fireTimer = fireInterval; 
     }
 
     private void Update()
     {
         if (isFloating)
         {
-            MoveInSquare();
+            if(tmp > 0){
+                rb.velocity = Vector2.up * floatSpeed;
+            }
+            else {
+                MoveInSquare();
+            }
+            Debug.Log(tmp);
+            tmp -= Time.deltaTime;
         }
         else
         {
             Patrol();
+            tmp = 0.2f;
+        }
+
+        fireTimer -= Time.deltaTime;
+
+        if (fireTimer <= 0)
+        {
+            FireHexagonalBullets();
+            fireTimer = fireInterval; // 重置計時器
         }
     }
 
@@ -87,6 +113,32 @@ public class EnemyController : MonoBehaviour
     // 切換浮空狀態方法
     public void ToggleFloating()
     {
-        isFloating = !isFloating;
+        // If the enemy is switching to patrolling, reset the float timer and direction
+        if (!isFloating)
+        {
+            floatTimer = 0f;          // Reset float timer
+            floatDirection = 0;       // Reset float direction
+            rb.velocity = Vector2.zero; // Stop any ongoing movement
+        }
+    }
+
+    void FireHexagonalBullets()
+    {
+        int bulletCount = 6; // 六邊形的 6 顆子彈
+        float angleStep = 360f / bulletCount; // 每顆子彈的角度間隔
+        float spawnDistance = 0.7f; // 生成位置偏移距離
+
+        for (int i = 0; i < bulletCount; i++)
+        {
+            float angle = i * angleStep;
+            Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+            
+            Vector2 spawnPosition = (Vector2)transform.position + direction * spawnDistance;
+            GameObject b = Instantiate(bullet, spawnPosition, Quaternion.Euler(0, 0, angle));
+            Bullet bulletScript = b.GetComponent<Bullet>();
+
+            bulletScript.initV = bulletSpeed;
+            bulletScript.initTheta = angle;
+        }
     }
 }

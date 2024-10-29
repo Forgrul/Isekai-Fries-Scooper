@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
     public float initV = 10; // The length of the vector of initial V.
     public float initTheta = 0; // The degree of the vector of initial V.
     public int bounceCountMax = 3; // The bullet will disappear after exceeding the number of bounces
+    public int damage = 20;
 
     private Vector2 nowV;
     private int bounceCount = 0;
@@ -35,9 +36,11 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("player"))
+        if(collision.gameObject.CompareTag("Player"))
         {
             // Damage
+            collision.gameObject.GetComponent<Player>().GetHit(damage);
+            Destroy(gameObject);
         }
         else if(!collision.gameObject.CompareTag("enemy"))
         {
