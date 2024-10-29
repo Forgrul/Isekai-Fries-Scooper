@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI; // Make sure to include this for UI components
 
 public class Win : MonoBehaviour
@@ -15,12 +16,7 @@ public class Win : MonoBehaviour
     {
         if (collision.CompareTag("Player")) // Check if the colliding object is the player
         {
-            // Show the congratulations message
-            // congratulationsText.SetActive(true);
-            // Debug.Log("Player has won!"); // For debugging purposes
-
-            QuitGame(); // Wait for 2 seconds before quitting (optional)
-            // Call the method to quit the game
+            SceneManager.LoadScene(0);
         }
     }
 
