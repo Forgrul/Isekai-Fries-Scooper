@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - FloatItem
-  - enemy
-  - bullet
+  - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX

@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
     }
 
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
         {
@@ -42,15 +42,23 @@ public class Bullet : MonoBehaviour
             collision.gameObject.GetComponent<Player>().GetHit(damage);
             Destroy(gameObject);
         }
-        else if(!collision.gameObject.CompareTag("enemy"))
+        else if(!collision.gameObject.CompareTag("Enemy"))
         {
             bounceCount++;
-            Vector2 normal = collision.contacts[0].normal;
-            Vector2 refV = Vector2.Reflect(nowV, normal);
-            rb.velocity = refV;
-            nowV = refV;
-        }
-        
+            // Vector2 normal = collision.contacts[0].normal;
+            // Vector2 refV = Vector2.Reflect(nowV, normal);
+            // rb.velocity = refV;
+            // nowV = refV;
+
+            RaycastHit2D hit;
+            LayerMask mask = LayerMask.GetMask("Ground");
+            hit = Physics2D.Raycast(transform.position, rb.velocity.normalized, Mathf.Infinity, mask);
+
+            if (hit.collider != null)
+            {
+                Vector2 refV = Vector3.Reflect(rb.velocity, hit.normal);
+                rb.velocity = refV;
+            }
+        }   
     }
-    
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI; // Make sure to include this for UI components
 
-public class Win : MonoBehaviour
+public class Goal : MonoBehaviour
 {
     // public GameObject congratulationsText; // Assign your UI text GameObject in the Inspector
 

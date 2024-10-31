@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
         }
             
         healthBarImage.fillAmount = GetHealthPercentage();
-        Debug.Log(GetHealthPercentage());
     }
 
     public float GetHealthPercentage()
