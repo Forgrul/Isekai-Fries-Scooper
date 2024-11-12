@@ -180,9 +180,9 @@ MonoBehaviour:
     m_Bits: 128
   CharacterSize: 1
   GScale: 3
-  groundCheck: {fileID: 0}
-  checkRadius: 0.1
-  groundDetector: {fileID: 0}
+  dashSpeed: 15
+  dashTime: 0.3
+  fastLandingSpeed: 15
 --- !u!61 &3169890231623216089
 BoxCollider2D:
   m_ObjectHideFlags: 0

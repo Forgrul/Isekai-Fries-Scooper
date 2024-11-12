@@ -9,10 +9,10 @@ public class EnemyController : MonoBehaviour
 
     private Vector2 startPosition;       // 初始位置
     private bool movingRight = true;     // 是否向右移動
-    private bool isFloating
+    private bool isFloating              // 是否處於浮空狀態
     {
         get { return GameManager.Instance.GetFloatStatus(); }
-    }     // 是否處於浮空狀態
+    }     
     private float floatTimer = 0f;       // 計時器
     private int floatDirection = 0;      // 浮空方向 (0: 向右, 1: 向上, 2: 向左, 3: 向下)
 

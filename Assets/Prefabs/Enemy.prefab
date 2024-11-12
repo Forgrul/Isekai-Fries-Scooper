@@ -176,5 +176,5 @@ MonoBehaviour:
   floatSpeed: 1.2
   floatInterval: 1.2
   bullet: {fileID: 694583389576333484, guid: 497c6884240ad4dab8559f95a0540864, type: 3}
-  fireInterval: 4
-  bulletSpeed: 10
+  fireInterval: 3
+  bulletSpeed: 8
