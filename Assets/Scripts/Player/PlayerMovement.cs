@@ -59,11 +59,12 @@ public class PlayerController : MonoBehaviour
             {
                 StartCoroutine(Dash());
             }
-            if(!isGrounded && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && Input.GetKeyDown(KeyCode.Space))
+            if(!isGrounded && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)))
             {
                 FastLanding();
             }
         }
+        Debug.Log(isGrounded);
     }
 
     void FlyMove()
@@ -134,7 +135,7 @@ public class PlayerController : MonoBehaviour
     void FastLanding()
     {
         isDashing = false;
-        rb.velocity = new Vector3(0f, fastLandingSpeed * -1, 0f);
+        rb.velocity = new Vector3(rb.velocity.x, fastLandingSpeed * -1, 0f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

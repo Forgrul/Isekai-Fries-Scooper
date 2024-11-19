@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     private Vector2 nowV;
     private int bounceCount = 0;
     private Rigidbody2D rb;
+    bool deflected = false;
 
     void Start()
     {
@@ -36,13 +37,17 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(!deflected && collision.gameObject.CompareTag("Player"))
         {
             // Damage
             collision.gameObject.GetComponent<Player>().GetHit(damage);
             Destroy(gameObject);
         }
-        else if(!collision.gameObject.CompareTag("Enemy"))
+        else if(!deflected && collision.gameObject.CompareTag("Enemy"))
+        {
+
+        }
+        else if(collision.gameObject.CompareTag("Platform"))
         {
             bounceCount++;
             // Vector2 normal = collision.contacts[0].normal;
@@ -60,5 +65,10 @@ public class Bullet : MonoBehaviour
                 rb.velocity = refV;
             }
         }   
+    }
+
+    public void Deflect(Vector3 direction)
+    {
+        rb.velocity = direction * initV;
     }
 }

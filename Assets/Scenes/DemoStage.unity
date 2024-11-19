@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 91878033}
   m_Layer: 7
   m_Name: Foreground
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9177,6 +9177,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6612523853323702679, guid: 5a8c689e7c241d44da2e169694d58047, type: 3}
   m_PrefabInstance: {fileID: 956354919}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &328895518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6772838303932267769, guid: a13c2d86fabb2454784a369c60f944e5, type: 3}
+  m_PrefabInstance: {fileID: 1216681653}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &328895525
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328895518}
+  m_BodyType: 1
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -9264,7 +9296,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.099784, y: 0.048019998, z: -10}
+  m_LocalPosition: {x: 59.766853, y: 0.04430008, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9567,6 +9599,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4586482360454734584, guid: a13c2d86fabb2454784a369c60f944e5, type: 3}
+      propertyPath: maxHp
+      value: 999999999
+      objectReference: {fileID: 0}
+    - target: {fileID: -4586482360454734584, guid: a13c2d86fabb2454784a369c60f944e5, type: 3}
       propertyPath: healthBarImage
       value: 
       objectReference: {fileID: 132256421}
@@ -9574,17 +9610,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
-    - target: {fileID: 2441699114473173186, guid: a13c2d86fabb2454784a369c60f944e5, type: 3}
-      propertyPath: groundCheck
-      value: 
-      objectReference: {fileID: 91878030}
     - target: {fileID: 6612523853323702679, guid: a13c2d86fabb2454784a369c60f944e5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.72
+      value: 57.15
       objectReference: {fileID: 0}
     - target: {fileID: 6612523853323702679, guid: a13c2d86fabb2454784a369c60f944e5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.08
+      value: 3.03
       objectReference: {fileID: 0}
     - target: {fileID: 6612523853323702679, guid: a13c2d86fabb2454784a369c60f944e5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9621,7 +9653,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6772838303932267769, guid: a13c2d86fabb2454784a369c60f944e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 328895525}
   m_SourcePrefab: {fileID: 100100000, guid: a13c2d86fabb2454784a369c60f944e5, type: 3}
 --- !u!4 &1216681654 stripped
 Transform:
@@ -10431,11 +10466,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2356459515483452088, guid: 0e2a0e7deffead14994ee757520d38a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.0997713
+      value: 59.76742
       objectReference: {fileID: 0}
     - target: {fileID: 2356459515483452088, guid: 0e2a0e7deffead14994ee757520d38a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.08
+      value: 3.03
       objectReference: {fileID: 0}
     - target: {fileID: 2356459515483452088, guid: 0e2a0e7deffead14994ee757520d38a7, type: 3}
       propertyPath: m_LocalPosition.z

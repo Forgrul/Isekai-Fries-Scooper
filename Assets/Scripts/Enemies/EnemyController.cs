@@ -41,7 +41,6 @@ public class EnemyController : MonoBehaviour
             else {
                 MoveInSquare();
             }
-            Debug.Log(tmp);
             tmp -= Time.deltaTime;
         }
         else
