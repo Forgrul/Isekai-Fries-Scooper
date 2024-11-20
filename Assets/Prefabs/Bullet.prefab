@@ -126,10 +126,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e87efbb549d364d63b55f85faa5110ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initV: 10
+  initV: 6
   initTheta: 0
   bounceCountMax: 3
   damage: 50
+  deflectedColor: {r: 0, g: 0.9056604, b: 0.042809542, a: 1}
 --- !u!58 &2811607039938754633
 CircleCollider2D:
   m_ObjectHideFlags: 0

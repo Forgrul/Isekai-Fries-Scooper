@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
     public float initTheta = 0; // The degree of the vector of initial V.
     public int bounceCountMax = 3; // The bullet will disappear after exceeding the number of bounces
     public int damage = 20;
+    public Color deflectedColor;
 
     private Vector2 nowV;
     private int bounceCount = 0;
@@ -43,9 +44,9 @@ public class Bullet : MonoBehaviour
             collision.gameObject.GetComponent<Player>().GetHit(damage);
             Destroy(gameObject);
         }
-        else if(!deflected && collision.gameObject.CompareTag("Enemy"))
+        else if(deflected && collision.gameObject.CompareTag("Enemy"))
         {
-
+            // Damage enemy
         }
         else if(collision.gameObject.CompareTag("Platform"))
         {
@@ -70,5 +71,7 @@ public class Bullet : MonoBehaviour
     public void Deflect(Vector3 direction)
     {
         rb.velocity = direction * initV;
+        deflected = true;
+        GetComponent<SpriteRenderer>().color = deflectedColor;
     }
 }

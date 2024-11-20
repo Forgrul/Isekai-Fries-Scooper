@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class DeflectArea : MonoBehaviour
 {
+    public PlayerController player;
     bool canRotate = true;
-    bool isDeflecting = false;
     float angle;
 
-    // Update is called once per frame
+    // animation
+    Animator anim;
+    int deflectAnim;
+
+    void Start()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        anim = transform.GetChild(0).GetComponent<Animator>();
+        deflectAnim = Animator.StringToHash("deflect");
+    }
+
     void Update()
     {
+        transform.position = player.transform.position;
         if(canRotate)
             UpdateDirection();
-        
-        // Since its scale is bound to its parent...
-        UpdateRotationBasedOnParentScale();
     }
 
     void UpdateDirection()
@@ -25,35 +33,26 @@ public class DeflectArea : MonoBehaviour
 
         Vector3 direction = mousePosWorld - transform.position;
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    void UpdateRotationBasedOnParentScale()
+    public float StartDeflect()
     {
-        if(Mathf.Sign(transform.parent.localScale.x) == 1)
-            transform.rotation = Quaternion.Euler(0, 0, angle);
-        else
-            transform.rotation = Quaternion.Euler(0, 0, 180 + angle);
-    }
-
-    public void StartDeflect()
-    {
-        // GetComponent<Collider2D>().enabled = true;
+        anim.SetTrigger(deflectAnim);
+        GetComponent<Collider2D>().enabled = true;
         canRotate = false;
-        isDeflecting = true;
+        return angle;
     }
 
     public void StopDeflect()
     {
-        // GetComponent<Collider2D>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
         canRotate = true;
-        isDeflecting = false;
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(!isDeflecting)
-            return;
-        // if is enemy bullet: bullet.Deflect();
         if(other.gameObject.CompareTag("Bullet"))
         {
             float angle = transform.rotation.eulerAngles.z;
