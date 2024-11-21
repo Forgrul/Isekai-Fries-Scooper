@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1d163d2b8762e4615b57ffdd54be5b89
+guid: 36f2542a192ecdb4ebfe8dc34d09a421
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -121,7 +121,133 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Shoot_0
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 199
+        width: 147
+        height: 248
+      alignment: 9
+      pivot: {x: 0.4423308, y: 0.43163398}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7880c2922ebcb754da78eaec461a4b38
+      internalID: 2124133324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shoot_1
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 199
+        width: 237
+        height: 192
+      alignment: 9
+      pivot: {x: 0.27465215, y: 0.5529833}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 345f5e405ac42664193d3b072e070a2b
+      internalID: 1408069421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shoot_2
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 199
+        width: 229
+        height: 192
+      alignment: 9
+      pivot: {x: 0.28158742, y: 0.5573986}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15b38abdc5afed342b1da6a48731a74a
+      internalID: 952172555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shoot_3
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 199
+        width: 96
+        height: 192
+      alignment: 9
+      pivot: {x: 0.59713554, y: 0.5529833}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b5247b80e7aa534a98f981632653314
+      internalID: -1000609543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shoot_4
+      rect:
+        serializedVersion: 2
+        x: 1060
+        y: 199
+        width: 133
+        height: 184
+      alignment: 9
+      pivot: {x: 0.37889433, y: 0.5414653}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 671a7f57cbf7cd54187d4eedda4257a9
+      internalID: -1103613902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shoot_5
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 199
+        width: 84
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5504601, y: 0.5573986}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fb90c6b69bee8149a4f0bb6c30fa1b3
+      internalID: 283776794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +258,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Shoot_0: 2124133324
+      Shoot_1: 1408069421
+      Shoot_2: 952172555
+      Shoot_3: -1000609543
+      Shoot_4: -1103613902
+      Shoot_5: 283776794
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

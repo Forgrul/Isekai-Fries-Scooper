@@ -389,6 +389,15 @@ MonoBehaviour:
   deflectTime: 0.25
   deflectCD: 0.5
   deflectArea: {fileID: 3169419748779239325}
+  shootTime: 0.2
+  shootCD: 0.2
+  bulletPrefab: {fileID: 694583389576333484, guid: 88514e5495fa4734ab3a3d9f24cd89d3, type: 3}
+  bulletInitDistance: 0.5
+  shootKey: 323
+  deflectKey: 324
+  dashKey: 304
+  fastLandingKeys: 7300000012010000
+  jumpKeys: 200000007700000011010000
 --- !u!61 &1643912683118069532
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -55,9 +55,13 @@ public class DeflectArea : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Bullet"))
         {
+            EnemyBullet bulletScript = other.gameObject.GetComponent<EnemyBullet>();
+            if(bulletScript == null) 
+                return;
+
             float angle = transform.rotation.eulerAngles.z;
             Vector3 direction = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0f);
-            other.gameObject.GetComponent<Bullet>().Deflect(direction);
+            bulletScript.Deflect(direction);
         }
     }
 }

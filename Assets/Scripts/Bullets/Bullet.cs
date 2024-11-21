@@ -1,30 +1,21 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public abstract class Bullet : MonoBehaviour
 {
-    public float initV = 10; // The length of the vector of initial V.
-    public float initTheta = 0; // The degree of the vector of initial V.
+    public float vel = 10; // The length of the vector of initial V.
     public int bounceCountMax = 3; // The bullet will disappear after exceeding the number of bounces
-    public int damage = 20;
-    public Color deflectedColor;
 
-    private Vector2 nowV;
-    private int bounceCount = 0;
-    private Rigidbody2D rb;
-    bool deflected = false;
+    protected int bounceCount;
+    protected Rigidbody2D rb;
 
-    void Start()
+    protected void Awake()
     {
+        bounceCount = 0;
         rb = GetComponent<Rigidbody2D>();
-
-        if (rb != null)
-        {
-            nowV = new Vector2(initV * Mathf.Cos(initTheta * Mathf.Deg2Rad), initV * Mathf.Sin(initTheta * Mathf.Deg2Rad));
-            rb.velocity = nowV;
-        }
     }
 
-    void Update()
+    // Updates rotation and destroys after enough bounces
+    protected void Update()
     {
         if (rb.velocity != Vector2.zero)
         {
@@ -35,26 +26,22 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
     }
 
-
-    void OnTriggerEnter2D(Collider2D collision)
+    public void SetDirection(Vector3 direction)
     {
-        if(!deflected && collision.gameObject.CompareTag("Player"))
-        {
-            // Damage
-            collision.gameObject.GetComponent<Player>().GetHit(damage);
-            Destroy(gameObject);
-        }
-        else if(deflected && collision.gameObject.CompareTag("Enemy"))
-        {
-            // Damage enemy
-        }
-        else if(collision.gameObject.CompareTag("Platform"))
+        rb.velocity = direction * vel;
+    }
+
+    public void SetDirectionAngle(float angle)
+    {
+        // rb = GetComponent<Rigidbody2D>();
+        rb.velocity = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0) * vel;
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Platform"))
         {
             bounceCount++;
-            // Vector2 normal = collision.contacts[0].normal;
-            // Vector2 refV = Vector2.Reflect(nowV, normal);
-            // rb.velocity = refV;
-            // nowV = refV;
 
             RaycastHit2D hit;
             LayerMask mask = LayerMask.GetMask("Ground");
@@ -65,13 +52,6 @@ public class Bullet : MonoBehaviour
                 Vector2 refV = Vector3.Reflect(rb.velocity, hit.normal);
                 rb.velocity = refV;
             }
-        }   
-    }
-
-    public void Deflect(Vector3 direction)
-    {
-        rb.velocity = direction * initV;
-        deflected = true;
-        GetComponent<SpriteRenderer>().color = deflectedColor;
+        }  
     }
 }

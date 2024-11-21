@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,9 +27,22 @@ public class PlayerController : MonoBehaviour
     public float deflectTime = 0.25f;
     public float deflectCD = 0.5f;
     public DeflectArea deflectArea;
-    bool isDeflecting = false;
-    bool canDeflect = true;
-    float timer;
+    bool canDeflect = true;            // deflect has CD
+
+    [Header("Shoot Settings")]
+    public float shootTime = 0.2f;
+    public float shootCD = 0.2f;
+    public GameObject bulletPrefab;
+    public float bulletInitDistance = 0.5f;
+    bool hasShootItem = false;
+    bool canShoot = true;
+
+    [Header("Keys")]
+    public KeyCode shootKey = KeyCode.Mouse0;
+    public KeyCode deflectKey = KeyCode.Mouse1;
+    public KeyCode dashKey = KeyCode.LeftShift;
+    public KeyCode[] fastLandingKeys = {KeyCode.S, KeyCode.DownArrow};
+    public KeyCode[] jumpKeys = {KeyCode.Space, KeyCode.W, KeyCode.UpArrow};
 
     // Animation
     Animator anim;
@@ -37,6 +51,8 @@ public class PlayerController : MonoBehaviour
     int isWalkingAnim;
     int vertVAnim;
     int dashAnim;
+    int shootAnim;
+    int shootAngleAnim;
 
     private bool isFloating
     {
@@ -51,6 +67,8 @@ public class PlayerController : MonoBehaviour
         isWalkingAnim = Animator.StringToHash("isWalking");
         vertVAnim = Animator.StringToHash("vertV");
         dashAnim = Animator.StringToHash("dash");
+        shootAnim = Animator.StringToHash("shoot");
+        shootAngleAnim = Animator.StringToHash("shootAngle");
     }
 
     void Update()
@@ -65,15 +83,15 @@ public class PlayerController : MonoBehaviour
             {
                 GroundMove();
             }
-            if(isGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
+            if(isGrounded && jumpKeys.Any(key => Input.GetKeyDown(key)))
             {
                 Jump();
             }
-            if(canDash && Input.GetKeyDown(KeyCode.LeftShift))
+            if(canDash && Input.GetKeyDown(dashKey))
             {
                 StartCoroutine(Dash());
             }
-            if(!isGrounded && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)))
+            if(!isGrounded && fastLandingKeys.Any(key => Input.GetKeyDown(key)))
             {
                 FastLanding();
             }
@@ -81,10 +99,16 @@ public class PlayerController : MonoBehaviour
             anim.SetFloat(vertVAnim, rb.velocity.y);
         }
 
-        if(canDeflect && !isDashing && Input.GetKeyDown(KeyCode.Mouse0))
+        if(canDeflect && !isDashing && Input.GetKeyDown(deflectKey))
         {
             StartCoroutine(Deflect());
         }
+
+        if(hasShootItem && canShoot && !isDashing && Input.GetKey(shootKey))
+        {
+            StartCoroutine(Shoot());
+        }
+
     }
 
     void FlyMove()
@@ -183,7 +207,6 @@ public class PlayerController : MonoBehaviour
     IEnumerator Deflect()
     {
         float angle = deflectArea.StartDeflect();
-        isDeflecting = true;
         canDeflect = false;
         anim.SetTrigger(deflectAnim);
         flipLocked = true;
@@ -195,11 +218,48 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(deflectTime);
 
         deflectArea.StopDeflect();
-        isDeflecting= false;
         flipLocked = false;
 
         yield return new WaitForSeconds(deflectCD);
 
         canDeflect = true;
+    }
+
+    IEnumerator Shoot()
+    {
+        canShoot = false;
+        anim.SetTrigger(shootAnim);
+
+        Vector3 mousePos = Input.mousePosition;
+        Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(mousePos);
+        Vector2 direction2d = (mousePosWorld - transform.position);
+        Vector3 direction = direction2d.normalized;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        if(angle < 90f && angle > -90f)
+            transform.localScale = new Vector3(Mathf.Abs(CharacterSize), CharacterSize, CharacterSize); // Face right
+        else
+            transform.localScale = new Vector3(-Mathf.Abs(CharacterSize), CharacterSize, CharacterSize); // Face left
+        flipLocked = true;
+
+        if(angle > 90f && angle < 180f)
+            angle = 180f - angle;
+        else if(angle < -90f && angle > -180f)
+            angle = -180f - angle;
+
+        anim.SetFloat(shootAngleAnim, angle);
+
+        GameObject bullet = Instantiate(bulletPrefab, transform.position + direction * bulletInitDistance, Quaternion.identity);
+        bullet.GetComponent<Bullet>().SetDirection(direction);
+
+        yield return new WaitForSeconds(shootCD);
+
+        canShoot = true;
+        flipLocked = false;
+    }
+
+    public void GetShootItem()
+    {
+        hasShootItem = true;
     }
 }
