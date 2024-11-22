@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("FastLanding Settings")]
     public float fastLandingSpeed = 10f;
+    bool isLanding = false;
 
     [Header("Deflect Settings")]
     public float deflectTime = 0.25f;
@@ -54,6 +55,9 @@ public class PlayerController : MonoBehaviour
     int shootAnim;
     int shootAngleAnim;
 
+    // Trail
+    TrailRenderer trail;
+
     private bool isFloating
     {
         get {return GameManager.Instance.GetFloatStatus();}
@@ -62,6 +66,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        trail = GetComponent<TrailRenderer>();
         anim = GetComponent<Animator>();
         deflectAnim = Animator.StringToHash("deflect");
         isWalkingAnim = Animator.StringToHash("isWalking");
@@ -164,10 +169,14 @@ public class PlayerController : MonoBehaviour
     IEnumerator Dash()
     {
         canDash = false;
-        rb.velocity = new Vector3(transform.localScale.x * dashSpeed, 0f, 0f);
+        if(Mathf.Abs(rb.velocity.x) > Mathf.Epsilon)
+            rb.velocity = new Vector3(Mathf.Sign(rb.velocity.x) * dashSpeed, 0f, 0f);
+        else
+            rb.velocity = new Vector3(transform.localScale.x * dashSpeed, 0f, 0f);
         rb.gravityScale = 0;
         isDashing = true;
         anim.SetTrigger(dashAnim);
+        trail.emitting = true;
 
         yield return new WaitForSeconds(dashTime);
 
@@ -175,6 +184,8 @@ public class PlayerController : MonoBehaviour
             yield break;
         if(isGrounded)
             canDash = true;
+        
+        trail.emitting = false;
         rb.velocity = new Vector3(0f, 0f, 0f);
         rb.gravityScale = GScale;
         isDashing = false;
@@ -183,7 +194,9 @@ public class PlayerController : MonoBehaviour
     void FastLanding()
     {
         isDashing = false;
+        isLanding = true;
         rb.velocity = new Vector3(rb.velocity.x, fastLandingSpeed * -1, 0f);
+        trail.emitting = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -193,6 +206,11 @@ public class PlayerController : MonoBehaviour
             isGrounded = true; // 設定為在地面上
             if(!isDashing)
                 canDash = true;
+            if(isLanding)
+            {
+                trail.emitting = false;
+                isLanding = false;
+            }
         }
     }
 
