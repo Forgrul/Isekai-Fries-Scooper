@@ -11,7 +11,10 @@ public class EnemyBullet : Bullet
 
         if(!deflected && other.gameObject.CompareTag("Player"))
         {
-            // other.gameObject.GetComponent<Player>().GetHit();
+            Player player = other.gameObject.GetComponent<Player>();
+            if(player.IsInvincible())
+                return;
+            player.GetHit();
             Destroy(gameObject);
         }
         else if(deflected && other.gameObject.CompareTag("Enemy"))

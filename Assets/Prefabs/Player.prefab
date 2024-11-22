@@ -216,9 +216,9 @@ GameObject:
   - component: {fileID: 9050377161557120560}
   - component: {fileID: 6935067988845337092}
   - component: {fileID: 1643912683118069532}
-  - component: {fileID: 996335227587790104}
   - component: {fileID: 4728578480900644315}
   - component: {fileID: 4338975739147756010}
+  - component: {fileID: 2189941141477834945}
   m_Layer: 8
   m_Name: player
   m_TagString: Player
@@ -444,20 +444,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3998991, y: 1.4574213}
   m_EdgeRadius: 0
---- !u!114 &996335227587790104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7522611778081321453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6e8542c02c19b54b908de594f338cda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 999999999
-  healthBarImage: {fileID: 0}
 --- !u!95 &4728578480900644315
 Animator:
   serializedVersion: 5
@@ -592,6 +578,23 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &2189941141477834945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7522611778081321453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529c014886b9a4471a6cb908e5c12883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHearts: 5
+  heartPrefab: {fileID: 8009301483513755578, guid: e3edfcdea5b974cbf9bc6ce887bda16c, type: 3}
+  canvasTransform: {fileID: 0}
+  startPosition: {x: -350, y: 180}
+  heartSpacing: 50
 --- !u!1 &9047262258969380282
 GameObject:
   m_ObjectHideFlags: 0
