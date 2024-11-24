@@ -5,6 +5,7 @@ using UnityEngine.UI; // Make sure to include this for UI components
 public class Goal : MonoBehaviour
 {
     // public GameObject congratulationsText; // Assign your UI text GameObject in the Inspector
+    public GameObject WinPanel;
 
     private void Start()
     {
@@ -16,7 +17,8 @@ public class Goal : MonoBehaviour
     {
         if (collision.CompareTag("Player")) // Check if the colliding object is the player
         {
-            SceneManager.LoadScene(0);
+            Time.timeScale = 0;
+            WinPanel.SetActive(true);
         }
     }
 
