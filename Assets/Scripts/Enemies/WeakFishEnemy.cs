@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WeakFishEnemy : Enemy
 {
+    public float patrolDistance = 2f;
     private bool movingRight = true;     // 是否向右移動
     private Vector3 startPosition;
 

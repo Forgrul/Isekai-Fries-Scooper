@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     public float shootCD = 0.2f;
     public GameObject bulletPrefab;
     public float bulletInitDistance = 0.5f;
-    bool hasShootItem = false;
+    int ammo = 0;
     bool canShoot = true;
 
     [Header("Keys")]
@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Deflect());
         }
 
-        if(hasShootItem && canShoot && !isDashing && Input.GetKey(shootKey))
+        if(ammo > 0 && canShoot && !isDashing && Input.GetKey(shootKey))
         {
             StartCoroutine(Shoot());
         }
@@ -162,6 +162,7 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         isDashing = false;
+        trail.emitting = false;
         canDash = true;
         rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Set jump force
     }
@@ -247,6 +248,7 @@ public class PlayerController : MonoBehaviour
     {
         canShoot = false;
         anim.SetTrigger(shootAnim);
+        ammo--;
 
         Vector3 mousePos = Input.mousePosition;
         Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(mousePos);
@@ -276,8 +278,8 @@ public class PlayerController : MonoBehaviour
         flipLocked = false;
     }
 
-    public void GetShootItem()
+    public void GetShootItem(int _ammo)
     {
-        hasShootItem = true;
+        ammo += _ammo;
     }
 }

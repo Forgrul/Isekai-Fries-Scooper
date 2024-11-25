@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2811607039938754633}
   - component: {fileID: -3098645167017775239}
   m_Layer: 11
-  m_Name: SlowerBullet
+  m_Name: FasterBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,6 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d734ffa20e619349b2f841ae1f6fdba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vel: 2.5
+  vel: 4
   bounceCountMax: 3
   deflectedColor: {r: 0.008063946, g: 0.9433962, b: 0, a: 1}

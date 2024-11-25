@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Enemy1 : Enemy
 {
-    [Header("Move Settings")]
+    [Header("Movement Settings")]
     public float minMoveCD = 0.5f;
     public float maxMoveCD = 2f;
+    public float patrolDistance = 2f;
     public bool canFly = false;
 
     // Patrol
@@ -30,7 +31,10 @@ public class Enemy1 : Enemy
         stopMoveTimer -= Time.deltaTime;
         if(stopMoveTimer >= 0)
             return;
-        
+
+        float scale = Mathf.Abs(transform.localScale.x);
+        transform.localScale = new Vector3(targetPosition.x > transform.position.x ? scale : -scale, scale, scale);
+
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
         if(transform.position == targetPosition)
         {

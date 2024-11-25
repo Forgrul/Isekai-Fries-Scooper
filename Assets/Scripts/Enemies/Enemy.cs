@@ -4,7 +4,6 @@ public abstract class Enemy : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float moveSpeed = 2f;         // 移動速度
-    public float patrolDistance = 2f;    // 巡邏範圍
 
     [Header("Health Settings")]
     public int health = 3;

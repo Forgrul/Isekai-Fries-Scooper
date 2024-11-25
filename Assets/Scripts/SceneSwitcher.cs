@@ -7,4 +7,14 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene(tarScene, LoadSceneMode.Single);
     }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
+    }
 }

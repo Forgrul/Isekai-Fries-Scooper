@@ -10312,14 +10312,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoseCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 3314437262853082222, guid: 62d9f69c17bc0441d83dceb97103bd6d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 697442508}
-    - target: {fileID: 4146843361930420755, guid: 62d9f69c17bc0441d83dceb97103bd6d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 697442508}
     - target: {fileID: 6378241536154265811, guid: 62d9f69c17bc0441d83dceb97103bd6d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -10417,18 +10409,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 697442508}
-    - target: {fileID: 2096410974494808223, guid: 0abca4d12c9cd43568f9b6bd3bb69e5a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwitchScene
-      objectReference: {fileID: 0}
     - target: {fileID: 2107743421526154697, guid: 0abca4d12c9cd43568f9b6bd3bb69e5a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 697442508}
-    - target: {fileID: 2107743421526154697, guid: 0abca4d12c9cd43568f9b6bd3bb69e5a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwitchScene
-      objectReference: {fileID: 0}
     - target: {fileID: 7845542338645444596, guid: 0abca4d12c9cd43568f9b6bd3bb69e5a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
