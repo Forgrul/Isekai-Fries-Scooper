@@ -161,5 +161,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 736897004694ec843932907f582268ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vel: 8
+  vel: 10
   bounceCountMax: 5

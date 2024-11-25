@@ -2774,6 +2774,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7843144417065909116, guid: 2f72686d6b2ec4843952670e96a5ca96, type: 3}
+      propertyPath: completionTimeText
+      value: 
+      objectReference: {fileID: 505227257}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2976,6 +2980,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0abca4d12c9cd43568f9b6bd3bb69e5a, type: 3}
+--- !u!1 &505227256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8317978080487870629, guid: 0abca4d12c9cd43568f9b6bd3bb69e5a, type: 3}
+  m_PrefabInstance: {fileID: 505227255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &505227257 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1020792963827066634, guid: 0abca4d12c9cd43568f9b6bd3bb69e5a, type: 3}
+  m_PrefabInstance: {fileID: 505227255}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3931,6 +3951,7 @@ MonoBehaviour:
   upwardWaveCount: 5
   upwardWaveInterval: 0.5
   upwardBulletCount: 20
+  WinPanel: {fileID: 505227256}
 --- !u!61 &1484125279
 BoxCollider2D:
   m_ObjectHideFlags: 0

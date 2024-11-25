@@ -33,6 +33,8 @@ public class Boss : Enemy
     Vector3 startPosition;
     Vector3 targetPosition;
 
+    public GameObject WinPanel;
+
     protected override void Start()
     {
         base.Start();
@@ -147,5 +149,15 @@ public class Boss : Enemy
 
             yield return new WaitForSeconds(upwardWaveInterval);
         }
+    }
+
+    void OnDestroy()
+    {
+        Time.timeScale = 0;
+        Transform statusUI = GameObject.Find("StatusUI").transform;
+        Transform LevelTimerTransform = statusUI.Find("LevelTimer");
+        GameObject LevelTimer = LevelTimerTransform.gameObject;
+        LevelTimer.GetComponent<LevelTimer>().ShowCompletionTime();
+        WinPanel.SetActive(true);
     }
 }

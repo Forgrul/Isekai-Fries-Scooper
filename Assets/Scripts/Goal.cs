@@ -18,7 +18,7 @@ public class Goal : MonoBehaviour
         if (collision.CompareTag("Player")) // Check if the colliding object is the player
         {
             Time.timeScale = 0;
-            Transform statusUI =  GameObject.Find("StatusUI").transform;
+            Transform statusUI = GameObject.Find("StatusUI").transform;
             Transform LevelTimerTransform = statusUI.Find("LevelTimer");
             GameObject LevelTimer = LevelTimerTransform.gameObject;
             LevelTimer.GetComponent<LevelTimer>().ShowCompletionTime();
