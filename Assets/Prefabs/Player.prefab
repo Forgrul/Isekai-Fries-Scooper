@@ -399,6 +399,15 @@ MonoBehaviour:
   dashKey: 304
   fastLandingKeys: 7300000012010000
   jumpKeys: 200000007700000011010000
+  dashSource: {fileID: 0}
+  dashSound: {fileID: 8300000, guid: 54ed988ce048049d7958fa55f6f14098, type: 3}
+  gun_pickSound: {fileID: 0}
+  gun_shotSound: {fileID: 0}
+  hitbackSound: {fileID: 0}
+  hurt_enemySound: {fileID: 0}
+  item_pickSound: {fileID: 0}
+  walkingSound: {fileID: 0}
+  deflectSound: {fileID: 0}
 --- !u!61 &1643912683118069532
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -593,8 +602,10 @@ MonoBehaviour:
   maxHearts: 5
   heartPrefab: {fileID: 8009301483513755578, guid: e3edfcdea5b974cbf9bc6ce887bda16c, type: 3}
   canvasTransform: {fileID: 0}
+  LoseCanvas: {fileID: 0}
   startPosition: {x: -350, y: 180}
   heartSpacing: 50
+  hurt_player: {fileID: 8300000, guid: 96415bde5d3524bb3a293a1800ba3bf5, type: 3}
 --- !u!1 &9047262258969380282
 GameObject:
   m_ObjectHideFlags: 0

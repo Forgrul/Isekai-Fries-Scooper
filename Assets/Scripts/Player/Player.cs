@@ -19,6 +19,11 @@ public class Player : MonoBehaviour
     private bool isInvincible = false;
     private SpriteRenderer spriteRenderer;
 
+    //sound effects
+    public AudioSource audioSource; // 音源
+    public AudioClip hurtPlayer; // 傷害音效
+    // ----------------------------------------------------------------
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +31,12 @@ public class Player : MonoBehaviour
         UpdateHeartsUI();
         
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // 初始化音源
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     public void GetHit()
@@ -34,6 +45,18 @@ public class Player : MonoBehaviour
             return;
 
         currentHearts -= 1;
+
+        // 播放受傷音效
+        if (hurtPlayer != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(hurtPlayer);
+        }
+        else
+        {
+            Debug.LogWarning("Hurt sound or audio source is missing!");
+        }
+
+
         if(currentHearts <= 0)
         {
             gameObject.GetComponent<Renderer>().enabled = false; 
