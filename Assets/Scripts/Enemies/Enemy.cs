@@ -11,7 +11,7 @@ public abstract class Enemy : MonoBehaviour
     [Header("Fire Settings")]
     public GameObject bulletPrefab;
     public float fireInterval = 3f;  // 發射間隔
-    private float fireTimer;
+    protected float fireTimer;
 
     protected Rigidbody2D rb;
 

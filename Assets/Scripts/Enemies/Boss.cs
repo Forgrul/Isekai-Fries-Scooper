@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Boss : Enemy
 {
+    [Header("Movement Settings")]
+    public float patrolDistance = 10f;
+    public float minMoveCD = 0.5f;
+    public float maxMoveCD = 2f;
+
     [Header("Fire Settings")]
     public GameObject slowBulletPrefab;
     public GameObject fastBulletPrefab;
@@ -23,9 +28,55 @@ public class Boss : Enemy
 
     delegate IEnumerator Attack();
 
+    // Patrol
+    float stopMoveTimer;
+    Vector3 startPosition;
+    Vector3 targetPosition;
+
+    protected override void Start()
+    {
+        base.Start();
+        stopMoveTimer = Random.Range(minMoveCD, maxMoveCD);
+        
+        startPosition = transform.position;
+        targetPosition = new Vector3(startPosition.x + Random.Range(-patrolDistance, patrolDistance), transform.position.y, transform.position.z);
+    }
+
+    protected override void Update()
+    {
+        Patrol();
+
+        fireTimer -= Time.deltaTime;
+
+        // Only fire after stop moving
+        if (fireTimer <= 0 && stopMoveTimer >= 0)
+        {
+            Fire();
+            // this shouldn't be hardcoded...anyway
+            float maxFireTime = 3f;
+            // prevent it moves while firing
+            stopMoveTimer = Mathf.Min(maxFireTime, stopMoveTimer);
+            fireTimer = fireInterval; // 重置計時器
+        }
+    }
+
+    // This is the same as Enemy1. Need to change later
     protected override void Patrol()
     {
-        
+        stopMoveTimer -= Time.deltaTime;
+        if(stopMoveTimer >= 0)
+            return;
+
+        float scale = Mathf.Abs(transform.localScale.x);
+        transform.localScale = new Vector3(targetPosition.x > transform.position.x ? scale : -scale, scale, scale);
+
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        if(transform.position == targetPosition)
+        {
+            stopMoveTimer = Random.Range(minMoveCD, maxMoveCD);
+
+            targetPosition = new Vector3(startPosition.x + Random.Range(-patrolDistance, patrolDistance), transform.position.y, transform.position.z);
+        }
     }
     
     protected override void Fire()
