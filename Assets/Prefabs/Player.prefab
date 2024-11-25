@@ -184,8 +184,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: -0.1}
-      - {x: 0, y: 0.1}
+    - - {x: 0, y: -0.5}
+      - {x: 0, y: 0.5}
       - {x: 1.7, y: 1.2}
       - {x: 1.7, y: -1.2}
   m_UseDelaunayMesh: 0
@@ -388,7 +388,7 @@ MonoBehaviour:
   dashTime: 0.25
   fastLandingSpeed: 15
   deflectTime: 0.25
-  deflectCD: 0.5
+  deflectCD: 1
   deflectArea: {fileID: 3169419748779239325}
   shootTime: 0.2
   shootCD: 0.2
@@ -593,6 +593,7 @@ MonoBehaviour:
   maxHearts: 5
   heartPrefab: {fileID: 8009301483513755578, guid: e3edfcdea5b974cbf9bc6ce887bda16c, type: 3}
   canvasTransform: {fileID: 0}
+  LoseCanvas: {fileID: 0}
   startPosition: {x: -350, y: 180}
   heartSpacing: 50
 --- !u!1 &9047262258969380282

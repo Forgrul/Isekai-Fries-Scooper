@@ -13,8 +13,13 @@ public class Boss : Enemy
 
     [Header("Diverge Attack")]
     public int divergeWaveCount = 5;
-    public float waveInterval = 0.5f;
-    public int divergeFireCount = 12;
+    public float divergeWaveInterval = 0.5f;
+    public int divergeBulletCount = 12;
+
+    [Header("Upward Attack")]
+    public int upwardWaveCount = 5;
+    public float upwardWaveInterval = 0.5f;
+    public int upwardBulletCount = 20;
 
     delegate IEnumerator Attack();
 
@@ -25,23 +30,25 @@ public class Boss : Enemy
     
     protected override void Fire()
     {
-        Attack[] attacks = { SpiralAttack, DivergeAttack };
+        Attack[] attacks = { SpiralAttack, DivergeAttack, UpwardAttack };
         int index = Random.Range(0, attacks.Length);
-        Debug.Log(index);
         StartCoroutine(attacks[index]());
     }
 
     IEnumerator SpiralAttack()
     {
+        float spawnDistance = 1f;
         for(int i = 0; i < spiralFireCount; i++)
         {
             float angle = 360f / spiralFireCount * i;
 
             for(int j = 0; j < 2; j++)
             {
-                GameObject b = Instantiate(slowBulletPrefab, transform.position, Quaternion.Euler(0, 0, angle));
+                Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+                Vector2 spawnPosition = (Vector2)transform.position + direction * spawnDistance;
+                GameObject b = Instantiate(slowBulletPrefab, spawnPosition, Quaternion.Euler(0, 0, angle));
                 Bullet bulletScript = b.GetComponent<Bullet>();
-                bulletScript.SetDirectionAngle(angle);
+                bulletScript.SetDirection(direction);
                 angle += 180f;
             }
 
@@ -51,21 +58,43 @@ public class Boss : Enemy
 
     IEnumerator DivergeAttack()
     {
-        int divergeWaveCount = 5;
+        float spawnDistance = 1f;
         float initPhase = Random.Range(0f, 360f);
         for(int i = 0; i < divergeWaveCount; i++)
         {
-            int divergeFireCount = 12;
-            float phase = initPhase + (360f / divergeFireCount) / 2 * i;
-            for(int j = 0; j < divergeFireCount; j++)
+            float phase = initPhase + (360f / divergeBulletCount) / 2 * i;
+            for(int j = 0; j < divergeBulletCount; j++)
             {
-                float angle = 360f / divergeFireCount * j + phase;
-                GameObject b = Instantiate(fastBulletPrefab, transform.position, Quaternion.Euler(0, 0, angle));
+                float angle = 360f / divergeBulletCount * j + phase;
+                Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+                Vector2 spawnPosition = (Vector2)transform.position + direction * spawnDistance;
+                GameObject b = Instantiate(fastBulletPrefab, spawnPosition, Quaternion.Euler(0, 0, angle));
                 Bullet bulletScript = b.GetComponent<Bullet>();
-                bulletScript.SetDirectionAngle(angle);
+                bulletScript.SetDirection(direction);
             }
 
-            yield return new WaitForSeconds(waveInterval);
+            yield return new WaitForSeconds(divergeWaveInterval);
+        }
+    }
+
+    IEnumerator UpwardAttack()
+    {
+        float spawnDistance = 2f;
+        for(int i = 0; i < upwardWaveCount; i++)
+        {
+            for(int j = 0; j < upwardBulletCount; j++)
+            {
+                float angle = Random.Range(60f, 120f);
+
+                Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+                Vector2 spawnPosition = (Vector2)transform.position + direction * spawnDistance;
+
+                GameObject b = Instantiate(fastBulletPrefab, spawnPosition, Quaternion.Euler(0, 0, angle));
+                Bullet bulletScript = b.GetComponent<Bullet>();
+                bulletScript.SetDirection(direction);
+            }
+
+            yield return new WaitForSeconds(upwardWaveInterval);
         }
     }
 }

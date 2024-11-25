@@ -3,6 +3,8 @@ using UnityEngine;
 public class EnemyBullet : Bullet
 {
     public Color deflectedColor;
+    bool isTouchingEnemy = false;
+    Enemy touchEnemy;
     bool deflected = false;
 
     protected override void OnTriggerEnter2D(Collider2D other)
@@ -17,11 +19,22 @@ public class EnemyBullet : Bullet
             player.GetHit();
             Destroy(gameObject);
         }
-        else if(deflected && other.gameObject.CompareTag("Enemy"))
+        else if(other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<Enemy>().GetHit();
-            Destroy(gameObject);
+            isTouchingEnemy = true;
+            touchEnemy = other.gameObject.GetComponent<Enemy>();
+            if(deflected)
+            {
+                touchEnemy.GetHit();
+                Destroy(gameObject);
+            }
         }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Enemy"))
+            isTouchingEnemy = false;
     }
 
     public void Deflect(Vector3 direction)
@@ -29,5 +42,10 @@ public class EnemyBullet : Bullet
         rb.velocity = direction * vel;  
         deflected = true;
         GetComponent<SpriteRenderer>().color = deflectedColor;
+        if(isTouchingEnemy)
+        {
+            touchEnemy.GetHit();
+            Destroy(gameObject);
+        }
     }
 }
