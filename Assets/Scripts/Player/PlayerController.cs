@@ -282,4 +282,9 @@ public class PlayerController : MonoBehaviour
     {
         ammo += _ammo;
     }
+
+    public int GetAmmo()
+    {
+        return ammo;
+    }
 }
