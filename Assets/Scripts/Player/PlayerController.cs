@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip deflectSound;
 
     // private AudioSource audioSource;
-    public void PlaySound(AudioClip clip)
+    public void PlaySound(AudioClip clip, float volume = 1f)
     {
         // 動態創建 AudioSource
         GameObject tempAudio = new GameObject("TempAudio");
@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
         audioSource.playOnAwake = false;
         audioSource.spatialBlend = 0; // 2D 音效
         audioSource.loop = false;
+        audioSource.volume = volume;
 
         // 播放音效
         audioSource.Play();
@@ -98,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
     public void PlayDashSound()
     {
-        PlaySound(dashSound);
+        PlaySound(dashSound, 0.2f);
     }
     public void PlayGunPickSound()
     {
@@ -116,7 +117,7 @@ public class PlayerController : MonoBehaviour
     }
     public void PlayWalkingSound()
     {
-        PlaySound(walkingSound);
+        PlaySound(walkingSound, 1000f);
     }
     public void PlayDeflectingSound()
     {
