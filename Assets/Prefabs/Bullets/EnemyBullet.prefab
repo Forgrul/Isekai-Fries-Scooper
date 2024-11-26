@@ -164,4 +164,4 @@ MonoBehaviour:
   vel: 4
   bounceCountMax: 3
   deflectedColor: {r: 0.008063946, g: 0.9433962, b: 0, a: 1}
-  hitbackSoundSound: {fileID: 8300000, guid: 1b844097753304d75aa1d57354bbefe5, type: 3}
+  hitbackSound: {fileID: 8300000, guid: 1b844097753304d75aa1d57354bbefe5, type: 3}
