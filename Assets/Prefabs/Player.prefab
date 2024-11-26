@@ -399,6 +399,13 @@ MonoBehaviour:
   dashKey: 304
   fastLandingKeys: 7300000012010000
   jumpKeys: 200000007700000011010000
+  dashSound: {fileID: 8300000, guid: 54ed988ce048049d7958fa55f6f14098, type: 3}
+  gun_pickSound: {fileID: 8300000, guid: d4da3f0fba9a44bfd997329d5a7f1794, type: 3}
+  gun_shotSound: {fileID: 8300000, guid: 7efb06087c0ba4ddab40d592f77158f7, type: 3}
+  item_pickSound: {fileID: 8300000, guid: 32ec64e3052ca43109c3c80964833947, type: 3}
+  walkingSound: {fileID: 8300000, guid: d7c522825027f41259316f1dff894aa7, type: 3}
+  deflectSound: {fileID: 8300000, guid: b78c29cf8dacc4137a1b3acd372001fa, type: 3}
+  walkSoundCooldown: 1
 --- !u!61 &1643912683118069532
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -596,6 +603,8 @@ MonoBehaviour:
   LoseCanvas: {fileID: 0}
   startPosition: {x: -350, y: 180}
   heartSpacing: 50
+  audioSource: {fileID: 0}
+  hurtPlayer: {fileID: 8300000, guid: 96415bde5d3524bb3a293a1800ba3bf5, type: 3}
 --- !u!1 &9047262258969380282
 GameObject:
   m_ObjectHideFlags: 0

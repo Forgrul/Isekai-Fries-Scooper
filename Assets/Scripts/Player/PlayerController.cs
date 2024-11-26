@@ -63,6 +63,80 @@ public class PlayerController : MonoBehaviour
         get {return GameManager.Instance.GetFloatStatus();}
     }   // 判斷是否在能浮空
 
+
+    //sound effects
+
+    public AudioClip dashSound;
+    public AudioClip gun_pickSound; // todo
+
+    public AudioClip gun_shotSound; // todo
+
+    public AudioClip item_pickSound;
+
+    public AudioClip walkingSound;
+    public AudioClip deflectSound;
+
+    // private AudioSource audioSource;
+    public void PlaySound(AudioClip clip, float volume = 1f)
+    {
+        // 動態創建 AudioSource
+        GameObject tempAudio = new GameObject("TempAudio");
+        AudioSource audioSource = tempAudio.AddComponent<AudioSource>();
+        audioSource.clip = clip;
+
+        // 設置音效屬性
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 0; // 2D 音效
+        audioSource.loop = false;
+        audioSource.volume = volume;
+
+        // 播放音效
+        audioSource.Play();
+
+        // 銷毀音效物件
+        Destroy(tempAudio, clip.length);
+    }
+
+    public void PlayDashSound()
+    {
+        PlaySound(dashSound, 0.2f);
+    }
+    public void PlayGunPickSound()
+    {
+        PlaySound(gun_pickSound);
+    }
+    public void PlayGunShotSound()
+    {
+        PlaySound(gun_shotSound);
+    }
+
+    
+    public void PlayItemPickSound()
+    {
+        PlaySound(item_pickSound);
+    }
+    public void PlayWalkingSound()
+    {
+        PlaySound(walkingSound, 1000f);
+    }
+    public void PlayDeflectingSound()
+    {
+        PlaySound(deflectSound);
+    }
+
+    private bool canPlayWalkSound = true;
+    public float walkSoundCooldown = 1f;
+
+    IEnumerator WalkSoundCooldownCoroutine()
+    {
+        // Debug.LogWarning("walking sound cooling down...");
+        canPlayWalkSound = false;
+        yield return new WaitForSeconds(walkSoundCooldown);
+        canPlayWalkSound = true;
+    }
+
+    // ----------------------------------------------------------------
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -74,7 +148,10 @@ public class PlayerController : MonoBehaviour
         dashAnim = Animator.StringToHash("dash");
         shootAnim = Animator.StringToHash("shoot");
         shootAngleAnim = Animator.StringToHash("shootAngle");
+
+        
     }
+
 
     void Update()
     {
@@ -151,10 +228,22 @@ public class PlayerController : MonoBehaviour
         if(flipLocked) return;
         if (moveInput > 0)
         {
+            if(canPlayWalkSound){
+                PlayWalkingSound();
+                // Debug.LogWarning("playing walk sound");
+                StartCoroutine(WalkSoundCooldownCoroutine());
+            }
+            
             transform.localScale = new Vector3(Mathf.Abs(CharacterSize), CharacterSize, CharacterSize); // Face right
         }
         else if (moveInput < 0)
         {
+            if(canPlayWalkSound){
+                PlayWalkingSound();
+                // Debug.LogWarning("playing walk sound");
+                StartCoroutine(WalkSoundCooldownCoroutine());
+            }
+            
             transform.localScale = new Vector3(-Mathf.Abs(CharacterSize), CharacterSize, CharacterSize); // Face left
         }
     }
@@ -169,6 +258,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Dash()
     {
+        PlayDashSound();
+
         canDash = false;
         if(Mathf.Abs(rb.velocity.x) > Mathf.Epsilon)
             rb.velocity = new Vector3(Mathf.Sign(rb.velocity.x) * dashSpeed, 0f, 0f);
@@ -225,6 +316,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Deflect()
     {
+        PlayDeflectingSound();
         float angle = deflectArea.StartDeflect();
         canDeflect = false;
         anim.SetTrigger(deflectAnim);
@@ -246,6 +338,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Shoot()
     {
+        // audioSource.PlayOneShot(gun_shot);
+        PlayGunShotSound();
         canShoot = false;
         anim.SetTrigger(shootAnim);
         ammo--;
@@ -281,6 +375,7 @@ public class PlayerController : MonoBehaviour
     public void GetShootItem(int _ammo)
     {
         ammo += _ammo;
+        PlayGunPickSound();
     }
 
     public int GetAmmo()

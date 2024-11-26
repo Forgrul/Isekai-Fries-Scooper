@@ -51,10 +51,41 @@ public abstract class Enemy : MonoBehaviour
     public void GetHit()
     {
         health--;
+        PlayHurtEnemySound();
 
         if (health <= 0)
         {
             Destroy(gameObject);
         }
+    }
+
+
+
+
+
+    //sound effects
+    public AudioClip hurt_enemySound;
+    public void PlaySound(AudioClip clip)
+    {
+        // 動態創建 AudioSource
+        GameObject tempAudio = new GameObject("TempAudio");
+        AudioSource audioSource = tempAudio.AddComponent<AudioSource>();
+        audioSource.clip = clip;
+
+        // 設置音效屬性
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 0; // 2D 音效
+        audioSource.loop = false;
+
+        // 播放音效
+        audioSource.Play();
+
+        // 銷毀音效物件
+        Destroy(tempAudio, clip.length);
+    }
+
+    public void PlayHurtEnemySound()
+    {
+        PlaySound(hurt_enemySound);
     }
 }
