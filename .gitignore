@@ -74,3 +74,6 @@ crashlytics-build.properties
 .DS_Store
 *.un~
 *~
+
+# wav files
+**/*.wav
