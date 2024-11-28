@@ -57,7 +57,7 @@ public class Boss : Enemy
             // this shouldn't be hardcoded...anyway
             float maxFireTime = 3f;
             // prevent it moves while firing
-            stopMoveTimer = Mathf.Min(maxFireTime, stopMoveTimer);
+            stopMoveTimer = Mathf.Max(maxFireTime, stopMoveTimer);
             fireTimer = fireInterval; // 重置計時器
         }
     }

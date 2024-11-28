@@ -162,6 +162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vel: 4
-  bounceCountMax: 3
+  bounceCountMax: 2
   deflectedColor: {r: 0.008063946, g: 0.9433962, b: 0, a: 1}
   hitbackSound: {fileID: 8300000, guid: 1b844097753304d75aa1d57354bbefe5, type: 3}

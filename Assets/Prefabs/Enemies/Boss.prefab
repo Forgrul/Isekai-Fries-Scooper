@@ -102,7 +102,7 @@ MonoBehaviour:
   moveSpeed: 3
   health: 100
   bulletPrefab: {fileID: 0}
-  fireInterval: 5
+  fireInterval: 8
   hurt_enemySound: {fileID: 8300000, guid: 4899433a569d84297903d4d4f1e6afd9, type: 3}
   patrolDistance: 10
   minMoveCD: 2

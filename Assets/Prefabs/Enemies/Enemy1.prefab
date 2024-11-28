@@ -172,10 +172,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  patrolDistance: 2
   health: 3
   bulletPrefab: {fileID: 694583389576333484, guid: c9255189509ea954c817819e70755cf4, type: 3}
   fireInterval: 10
+  hurt_enemySound: {fileID: 8300000, guid: 4899433a569d84297903d4d4f1e6afd9, type: 3}
   minMoveCD: 0.5
   maxMoveCD: 2
+  patrolDistance: 2
   canFly: 1
