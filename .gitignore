@@ -77,3 +77,4 @@ crashlytics-build.properties
 
 # wav files
 **/*.wav
+**/*.wav.meta
