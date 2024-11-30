@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemyBullet : Bullet
 {
+    public float deflectSpeedFactor = 2f;
     public Color deflectedColor;
     bool isTouchingEnemy = false;
     Enemy touchEnemy;
@@ -41,7 +42,7 @@ public class EnemyBullet : Bullet
     {
         PlayHitbackSound();
 
-        rb.velocity = direction * vel;  
+        rb.velocity = direction * vel * deflectSpeedFactor;
         deflected = true;
         GetComponent<SpriteRenderer>().color = deflectedColor;
         if(isTouchingEnemy)

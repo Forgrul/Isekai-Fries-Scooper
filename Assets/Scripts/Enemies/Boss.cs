@@ -159,8 +159,5 @@ public class Boss : Enemy
         GameObject LevelTimer = LevelTimerTransform.gameObject;
         LevelTimer.GetComponent<LevelTimer>().ShowCompletionTime();
         WinPanel.SetActive(true);
-    }
-
-
-    
+    } 
 }
