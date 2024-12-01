@@ -213,9 +213,9 @@ GameObject:
   - component: {fileID: 7908589838151774635}
   - component: {fileID: 3175102418240380197}
   - component: {fileID: 6790702256815736956}
-  - component: {fileID: 9050377161557120560}
   - component: {fileID: 6935067988845337092}
   - component: {fileID: 1643912683118069532}
+  - component: {fileID: 8118101515981654251}
   - component: {fileID: 4728578480900644315}
   - component: {fileID: 4338975739147756010}
   - component: {fileID: 2189941141477834945}
@@ -321,51 +321,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &9050377161557120560
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7522611778081321453}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.01770161, y: -0.98867005}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5296897, y: 0.5471853}
-    oldSize: {x: 0.89, y: 1.961254}
-    newSize: {x: 0.89, y: 1.961254}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.24149954, y: 0.08877432}
-  m_EdgeRadius: 0
 --- !u!114 &6935067988845337092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,6 +407,41 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32349032, y: 1.4192169}
   m_EdgeRadius: 0
+--- !u!70 &8118101515981654251
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7522611778081321453}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.022905579, y: -0.97667944}
+  m_Size: {x: 0.23851866, y: 0.08673287}
+  m_Direction: 1
 --- !u!95 &4728578480900644315
 Animator:
   serializedVersion: 5

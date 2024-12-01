@@ -58,13 +58,9 @@ public class PlayerController : MonoBehaviour
     // Trail
     TrailRenderer trail;
 
-    private bool isFloating
-    {
-        get {return GameManager.Instance.GetFloatStatus();}
-    }   // 判斷是否在能浮空
+    float flyTimer = 0f;
 
-
-    //sound effects
+    // Sound Effects
 
     public AudioClip dashSound;
     public AudioClip gun_pickSound; // todo
@@ -148,15 +144,14 @@ public class PlayerController : MonoBehaviour
         dashAnim = Animator.StringToHash("dash");
         shootAnim = Animator.StringToHash("shoot");
         shootAngleAnim = Animator.StringToHash("shootAngle");
-
-        
     }
 
 
     void Update()
     {
-        if (isFloating)
+        if (flyTimer > 0)
         {
+            flyTimer -= Time.deltaTime;
             FlyMove();
         }
         else
@@ -214,6 +209,11 @@ public class PlayerController : MonoBehaviour
         {
             transform.localScale = new Vector3(-Mathf.Abs(CharacterSize), CharacterSize, CharacterSize); // Face left
         }
+    }
+
+    public void Fly(float duration)
+    {
+        flyTimer = duration;
     }
 
     void GroundMove()

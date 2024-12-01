@@ -9,25 +9,17 @@ public class FloatItem : Item
 
     void Start()
     {
-        Transform statusUI =  GameObject.Find("StatusUI").transform;
+        Transform statusUI = GameObject.Find("StatusUI").transform;
         Transform floatingTimerTransform = statusUI.Find("FloatingTimer");
         FloatingTimer = floatingTimerTransform.gameObject;
     }
 
     protected override void TriggerItem(GameObject player)
     {
-        GameManager.Instance.ChangeFloatStatus(true);
+        PlayerController playerControllerScript = player.GetComponent<PlayerController>();
+        playerControllerScript.Fly(duration);
+
         FloatingTimer.SetActive(true);
         FloatingTimer.GetComponent<FloatingTimer>().StartTimer(duration);
-        StartCoroutine(BackToGround());
-    }
-
-    IEnumerator BackToGround()
-    {
-        // Wait for 5 seconds
-        yield return new WaitForSeconds(duration);
-
-        // Print the message to the console
-        GameManager.Instance.ChangeFloatStatus(false);
     }
 }
