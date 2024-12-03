@@ -101,14 +101,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   health: 100
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 694583389576333484, guid: 79e3a1c653b91774e95232b4389c7622, type: 3}
   fireInterval: 8
   hurt_enemySound: {fileID: 8300000, guid: 4899433a569d84297903d4d4f1e6afd9, type: 3}
   patrolDistance: 10
   minMoveCD: 2
   maxMoveCD: 5
-  slowBulletPrefab: {fileID: 694583389576333484, guid: c9255189509ea954c817819e70755cf4, type: 3}
-  fastBulletPrefab: {fileID: 694583389576333484, guid: 79e3a1c653b91774e95232b4389c7622, type: 3}
   spiralFireCount: 20
   divergeWaveCount: 5
   divergeWaveInterval: 0.5

@@ -9,9 +9,9 @@ public class Boss : Enemy
     public float minMoveCD = 0.5f;
     public float maxMoveCD = 2f;
 
-    [Header("Fire Settings")]
-    public GameObject slowBulletPrefab;
-    public GameObject fastBulletPrefab;
+    // [Header("Fire Settings")]
+    // public GameObject slowBulletPrefab;
+    // public GameObject fastBulletPrefab;
 
     [Header("Spiral Attack")]
     public int spiralFireCount = 20;
@@ -99,7 +99,7 @@ public class Boss : Enemy
             {
                 Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
                 Vector2 spawnPosition = (Vector2)transform.position + direction * spawnDistance;
-                GameObject b = Instantiate(slowBulletPrefab, spawnPosition, Quaternion.Euler(0, 0, angle));
+                GameObject b = Instantiate(bulletPrefab, spawnPosition, Quaternion.Euler(0, 0, angle));
                 Bullet bulletScript = b.GetComponent<Bullet>();
                 bulletScript.SetDirection(direction);
                 angle += 180f;
@@ -121,7 +121,7 @@ public class Boss : Enemy
                 float angle = 360f / divergeBulletCount * j + phase;
                 Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
                 Vector2 spawnPosition = (Vector2)transform.position + direction * spawnDistance;
-                GameObject b = Instantiate(fastBulletPrefab, spawnPosition, Quaternion.Euler(0, 0, angle));
+                GameObject b = Instantiate(bulletPrefab, spawnPosition, Quaternion.Euler(0, 0, angle));
                 Bullet bulletScript = b.GetComponent<Bullet>();
                 bulletScript.SetDirection(direction);
             }
@@ -142,7 +142,7 @@ public class Boss : Enemy
                 Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
                 Vector2 spawnPosition = (Vector2)transform.position + direction * spawnDistance;
 
-                GameObject b = Instantiate(fastBulletPrefab, spawnPosition, Quaternion.Euler(0, 0, angle));
+                GameObject b = Instantiate(bulletPrefab, spawnPosition, Quaternion.Euler(0, 0, angle));
                 Bullet bulletScript = b.GetComponent<Bullet>();
                 bulletScript.SetDirection(direction);
             }
@@ -154,10 +154,11 @@ public class Boss : Enemy
     void OnDestroy()
     {
         Time.timeScale = 0;
-        Transform statusUI = GameObject.Find("StatusUI").transform;
-        Transform LevelTimerTransform = statusUI.Find("LevelTimer");
-        GameObject LevelTimer = LevelTimerTransform.gameObject;
-        LevelTimer.GetComponent<LevelTimer>().ShowCompletionTime();
-        WinPanel.SetActive(true);
+        Transform statusUI = GameObject.Find("StatusUI")?.transform;
+        Transform LevelTimerTransform = statusUI?.Find("LevelTimer");
+        GameObject LevelTimer = LevelTimerTransform?.gameObject;
+        LevelTimer?.GetComponent<LevelTimer>().ShowCompletionTime();
+        if(WinPanel != null)
+            WinPanel.SetActive(true);
     } 
 }

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7562290058982884327}
   - component: {fileID: 1200964515843009942}
   - component: {fileID: 2811607039938754633}
-  - component: {fileID: -3098645167017775239}
+  - component: {fileID: -5454323550083761251}
   m_Layer: 11
-  m_Name: SlowerBullet
+  m_Name: BossBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: -0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: e7980a08b8e9f3c4bbe56762604cba98, type: 3}
+  m_Sprite: {fileID: -362105774, guid: 3086717952f20b946bdea3ef49e120ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -146,10 +146,10 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.0012946129}
+  m_Offset: {x: -0.39174065, y: -0.017562687}
   serializedVersion: 2
-  m_Radius: 0.041161656
---- !u!114 &-3098645167017775239
+  m_Radius: 0.75322884
+--- !u!114 &-5454323550083761251
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,11 +158,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 694583389576333484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d734ffa20e619349b2f841ae1f6fdba, type: 3}
+  m_Script: {fileID: 11500000, guid: 50bec188714551b40a93a8d8a4411c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vel: 2
-  bounceCountMax: 3
-  deflectSpeedFactor: 3
-  deflectedColor: {r: 0.008063946, g: 0.9433962, b: 0, a: 1}
+  vel: 4
+  bounceCountMax: 2
+  scatteredImage: {fileID: 1731604828, guid: 3086717952f20b946bdea3ef49e120ff, type: 3}
+  deflectSpeedFactor: 2
+  deflectedColor: {r: 0.3647059, g: 0.45882353, b: 1, a: 1}
   hitbackSound: {fileID: 8300000, guid: 1b844097753304d75aa1d57354bbefe5, type: 3}

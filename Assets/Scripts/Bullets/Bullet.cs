@@ -1,21 +1,28 @@
 using UnityEngine;
+using System.Collections;
 
 public abstract class Bullet : MonoBehaviour
 {
     public float vel = 10; // The length of the vector of initial V.
     public int bounceCountMax = 3; // The bullet will disappear after exceeding the number of bounces
+    public Sprite scatteredImage;
 
     protected int bounceCount;
     protected Rigidbody2D rb;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         bounceCount = 0;
         rb = GetComponent<Rigidbody2D>();
     }
 
+    protected virtual void Start()
+    {
+
+    }
+
     // Updates rotation and destroys after enough bounces
-    protected void Update()
+    protected virtual void Update()
     {
         if (rb.velocity != Vector2.zero)
         {
@@ -26,7 +33,7 @@ public abstract class Bullet : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void SetDirection(Vector3 direction)
+    public virtual void SetDirection(Vector3 direction)
     {
         rb.velocity = direction * vel;
     }
@@ -42,6 +49,12 @@ public abstract class Bullet : MonoBehaviour
         if(other.gameObject.CompareTag("Platform") || other.gameObject.CompareTag("OneWayPlatform"))
         {
             bounceCount++;
+            if(bounceCountMax != 1 && bounceCount == bounceCountMax - 1)
+            {
+                transform.localScale = (0.5f + 0.5f * (float)(bounceCountMax - bounceCount) / (float)bounceCountMax) * transform.localScale;
+                if(scatteredImage != null)
+                    GetComponent<SpriteRenderer>().sprite = scatteredImage;
+            }
 
             RaycastHit2D hit;
             LayerMask mask = LayerMask.GetMask("Ground");
