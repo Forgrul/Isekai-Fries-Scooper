@@ -12,8 +12,7 @@ public class SwitchCamera : MonoBehaviour
     {   
         if(other.gameObject.CompareTag("Player"))
         {
-            followCam.enabled = false;
-            fixedCam.enabled = true;
+            SwitchToFixedCamera();
         }
     }
 
@@ -21,8 +20,21 @@ public class SwitchCamera : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            followCam.enabled = true;
-            fixedCam.enabled = false;
+            SwitchToFollowCamera();
         }
+    }
+
+    void SwitchToFollowCamera()
+    {
+        followCam.enabled = true;
+        if(fixedCam != null)
+            fixedCam.enabled = false;
+    }
+
+    void SwitchToFixedCamera()
+    {
+        followCam.enabled = false;
+        if(fixedCam != null)
+            fixedCam.enabled = true;
     }
 }

@@ -17,7 +17,7 @@ public class PlayerOneWayPlatform : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             if (currentOneWayPlatform != null)
             {
@@ -36,6 +36,11 @@ public class PlayerOneWayPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("OneWayPlatform"))
         {
+            if(canRecover)
+            {
+                canRecover = false;
+                Physics2D.IgnoreCollision(playerCollider, platformCollider, false);
+            }
             currentOneWayPlatform = collision.gameObject;
         }
     }
@@ -53,7 +58,7 @@ public class PlayerOneWayPlatform : MonoBehaviour
         platformCollider = currentOneWayPlatform.GetComponent<CompositeCollider2D>();
 
         Physics2D.IgnoreCollision(playerCollider, platformCollider);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.05f);
         canRecover = true;
         // Physics2D.IgnoreCollision(playerCollider, platformCollider, false);
     }

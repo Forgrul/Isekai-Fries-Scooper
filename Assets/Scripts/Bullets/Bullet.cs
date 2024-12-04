@@ -9,6 +9,7 @@ public abstract class Bullet : MonoBehaviour
 
     protected int bounceCount;
     protected Rigidbody2D rb;
+    Vector3 origScale;
 
     protected virtual void Awake()
     {
@@ -18,7 +19,7 @@ public abstract class Bullet : MonoBehaviour
 
     protected virtual void Start()
     {
-
+        origScale = transform.localScale;
     }
 
     // Updates rotation and destroys after enough bounces
@@ -49,10 +50,10 @@ public abstract class Bullet : MonoBehaviour
         if(other.gameObject.CompareTag("Platform") || other.gameObject.CompareTag("OneWayPlatform"))
         {
             bounceCount++;
-            if(bounceCountMax != 1 && bounceCount == bounceCountMax - 1)
+            if(bounceCountMax != 1)
             {
-                transform.localScale = (0.5f + 0.5f * (float)(bounceCountMax - bounceCount) / (float)bounceCountMax) * transform.localScale;
-                if(scatteredImage != null)
+                transform.localScale = (0.5f + 0.5f * (float)(bounceCountMax - bounceCount) / (float)bounceCountMax) * origScale;
+                if(bounceCount == bounceCountMax - 1 && scatteredImage != null)
                     GetComponent<SpriteRenderer>().sprite = scatteredImage;
             }
 

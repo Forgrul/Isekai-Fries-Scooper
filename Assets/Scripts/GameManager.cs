@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     bool isFloating = false; 
-
+    public bool isHardcore = false;
 
     private void Awake()
     {

@@ -8,6 +8,13 @@ public class EnemyBullet : Bullet
     Enemy touchEnemy;
     bool deflected = false;
 
+    protected override void Start()
+    {
+        base.Start();
+        if(GameManager.Instance.isHardcore)
+            SetUpHardcore();
+    }
+
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         base.OnTriggerEnter2D(other);
@@ -77,5 +84,10 @@ public class EnemyBullet : Bullet
     public void PlayHitbackSound()
     {
         PlaySound(hitbackSound);
+    }
+
+    void SetUpHardcore()
+    {
+        bounceCountMax++;
     }
 }
