@@ -212,14 +212,20 @@ public class PlayerController : MonoBehaviour
 
     void FlyMove()
     {
+        // Stop flying
+        // if(Input.GetKeyDown(KeyCode.Space))
+        //     flyTimer = 0f;
         rb.gravityScale = 0;
 
         // Control vertical movement
         float moveInputVertical = Input.GetAxisRaw("Vertical");
-        rb.velocity = new Vector2(rb.velocity.x, moveInputVertical * flySpeed);
-
-        // Add horizontal movement while floating
         float moveInputHorizontal = Input.GetAxisRaw("Horizontal");
+        if(Mathf.Abs(moveInputHorizontal) == 1f && Mathf.Abs(moveInputVertical) == 1f)
+        {
+            moveInputHorizontal *= 0.707f;
+            moveInputVertical *= 0.707f;
+        }
+        rb.velocity = new Vector2(rb.velocity.x, moveInputVertical * flySpeed);
         rb.velocity = new Vector2(moveInputHorizontal * flySpeed, rb.velocity.y);
         
         // Flip the character based on horizontal input

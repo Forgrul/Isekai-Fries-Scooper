@@ -341,9 +341,8 @@ MonoBehaviour:
   CharacterSize: 1
   GScale: 3
   moveSpeed: 7
-  flySpeed: 9
+  flySpeed: 10
   jumpForce: 15
-  myParticleSystem: {fileID: 0}
   dashSpeed: 20
   dashTime: 0.25
   fastLandingSpeed: 15
@@ -1250,8 +1249,8 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0
     donutRadius: 0.2
-    m_Position: {x: -0.5, y: -0.5, z: 0}
-    m_Rotation: {x: 0, y: 0, z: -105}
+    m_Position: {x: -0.85, y: -0.4, z: 0}
+    m_Rotation: {x: 0, y: 0, z: -125}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0

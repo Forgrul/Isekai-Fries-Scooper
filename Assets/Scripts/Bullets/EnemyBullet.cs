@@ -88,6 +88,6 @@ public class EnemyBullet : Bullet
 
     void SetUpHardcore()
     {
-        bounceCountMax++;
+        // bounceCountMax++;
     }
 }

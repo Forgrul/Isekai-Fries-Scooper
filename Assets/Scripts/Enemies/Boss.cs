@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Boss : Enemy
 {
@@ -27,6 +28,7 @@ public class Boss : Enemy
     public int upwardBulletCount = 20;
 
     delegate IEnumerator Attack();
+    IEnumerator currentAttackCoroutine;
 
     // Patrol
     float stopMoveTimer;
@@ -47,6 +49,7 @@ public class Boss : Enemy
     int yVelAnim;
     int isWalkingAnim;
 
+    // Jump positions
     List<Vector3> positions = new List<Vector3>();
     int currentPositionIndex = 0;
 
@@ -128,6 +131,8 @@ public class Boss : Enemy
         float dx = targetPosition.x - currPosition.x;
         float dy = targetPosition.y - currPosition.y;
 
+        transform.localScale = new Vector3(Mathf.Sign(dx) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
         Vector3 newV = new Vector3(dx / t, (dy + 0.5f * 9.81f * t * t) / t, 0);
         rb.velocity = newV;
         currentPositionIndex = targetPositionIndex;
@@ -149,7 +154,8 @@ public class Boss : Enemy
         Attack[] attacks = { SpiralAttack, DivergeAttack, UpwardAttack };
         int index = Random.Range(0, attacks.Length);
         isFiring = true;
-        StartCoroutine(attacks[index]());
+        currentAttackCoroutine = attacks[index]();
+        StartCoroutine(currentAttackCoroutine);
     }
 
     IEnumerator Float()
@@ -254,17 +260,29 @@ public class Boss : Enemy
     {
         if(dead) // boss only die once
             return;
+
         dead = true;
+        rb.velocity = Vector3.zero;
+        rb.isKinematic = true;
+        anim.SetFloat(yVelAnim, 0f);
         anim.SetTrigger(dieAnim);
+
+        if(currentAttackCoroutine != null)
+            StopCoroutine(currentAttackCoroutine);
+        Bullet[] all_bullets = FindObjectsOfType<Bullet>();
+        foreach(Bullet bullet in all_bullets)
+            Destroy(bullet.gameObject);
+
+        Time.timeScale = 0;
 
         StartCoroutine(ShowWinPanel());
     }
 
     IEnumerator ShowWinPanel()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSecondsRealtime(2f);
 
-        Time.timeScale = 0;
+        // Time.timeScale = 0;
         Transform statusUI = GameObject.Find("StatusUI")?.transform;
         Transform LevelTimerTransform = statusUI?.Find("LevelTimer");
         GameObject LevelTimer = LevelTimerTransform?.gameObject;
