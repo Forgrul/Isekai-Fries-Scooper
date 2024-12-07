@@ -6,7 +6,6 @@ using TMPro;
 public class LevelTimer : MonoBehaviour
 {
     public TMP_Text timerText; 
-    public TMP_Text completionTimeText; // 顯示通關時間的 UI
     private float elapsedTime = 0f;
     private bool isTiming = false; 
 
@@ -45,12 +44,9 @@ public class LevelTimer : MonoBehaviour
         }
     }
 
-    public void ShowCompletionTime()
+    public float getElapsedTime()
     {
-        if (completionTimeText != null)
-        {
-            completionTimeText.text = "Congratulations!!\nYou completed this level\nin " + ((Mathf.FloorToInt(elapsedTime / 60) == 0)? "": Mathf.FloorToInt(elapsedTime / 60) + " minutes and ") + Mathf.FloorToInt(elapsedTime % 60) + " seconds.";
-        }
+        return elapsedTime;
     }
 
     private string FormatTime(float time)

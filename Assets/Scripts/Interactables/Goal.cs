@@ -4,9 +4,7 @@ using UnityEngine.UI; // Make sure to include this for UI components
 
 public class Goal : MonoBehaviour
 {
-    // public GameObject congratulationsText; // Assign your UI text GameObject in the Inspector
-    public GameObject WinPanel;
-
+    
     private void Start()
     {
         // Make sure the congratulations text is not visible at the start
@@ -17,12 +15,7 @@ public class Goal : MonoBehaviour
     {
         if (collision.CompareTag("Player")) // Check if the colliding object is the player
         {
-            Time.timeScale = 0;
-            Transform statusUI = GameObject.Find("StatusUI").transform;
-            Transform LevelTimerTransform = statusUI.Find("LevelTimer");
-            GameObject LevelTimer = LevelTimerTransform.gameObject;
-            LevelTimer.GetComponent<LevelTimer>().ShowCompletionTime();
-            WinPanel.SetActive(true);
+            GameManager.Instance.showEnd(true);
         }
     }
 

@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     public GameObject heartPrefab; // 愛心預製件
     public Transform canvasTransform; // Canvas 作為愛心的父物件
 
-    public GameObject LoseCanvas;
     [SerializeField] private Vector2 startPosition = new Vector2(-300, 250); // 第一顆愛心的位置
     [SerializeField] private float heartSpacing = 80f; // 每顆愛心的水平間距
     private List<GameObject> hearts = new List<GameObject>();
@@ -60,8 +59,7 @@ public class Player : MonoBehaviour
         if(currentHearts <= 0)
         {
             gameObject.GetComponent<Renderer>().enabled = false; 
-            Time.timeScale = 0;
-            LoseCanvas.SetActive(true);
+            GameManager.Instance.showEnd(false);
         }
             
         UpdateHeartsUI();
