@@ -148,7 +148,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.39174065, y: -0.017562687}
   serializedVersion: 2
-  m_Radius: 0.75322884
+  m_Radius: 0.6532288
 --- !u!114 &-5454323550083761251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,3 +167,5 @@ MonoBehaviour:
   deflectSpeedFactor: 2
   deflectedColor: {r: 0.3647059, g: 0.45882353, b: 1, a: 1}
   hitbackSound: {fileID: 8300000, guid: 1b844097753304d75aa1d57354bbefe5, type: 3}
+  resourceFolder: Fireball_Anim
+  frameRate: 0.01
