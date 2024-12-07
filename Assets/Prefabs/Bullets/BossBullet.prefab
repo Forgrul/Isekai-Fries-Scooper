@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 50
-  m_Sprite: {fileID: -362105774, guid: 3086717952f20b946bdea3ef49e120ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5326dbf03373ed34c9e1e53fc5eb8498, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -146,9 +146,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.39174065, y: -0.017562687}
+  m_Offset: {x: 0.06688879, y: -0.1113462}
   serializedVersion: 2
-  m_Radius: 0.6532288
+  m_Radius: 0.2912487
 --- !u!114 &-5454323550083761251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,4 +168,4 @@ MonoBehaviour:
   deflectedColor: {r: 0.3647059, g: 0.45882353, b: 1, a: 1}
   hitbackSound: {fileID: 8300000, guid: 1b844097753304d75aa1d57354bbefe5, type: 3}
   resourceFolder: Fireball_Anim
-  frameRate: 0.01
+  frameRate: 0.05

@@ -31816,6 +31816,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2189941141477834945, guid: 6ba53f5c40416b04899a0e283c6787d3, type: 3}
+      propertyPath: maxHearts
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2189941141477834945, guid: 6ba53f5c40416b04899a0e283c6787d3, type: 3}
       propertyPath: LoseCanvas
       value: 
       objectReference: {fileID: 890706185}

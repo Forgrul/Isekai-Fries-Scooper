@@ -37,7 +37,7 @@ public class Fireball : EnemyBullet
 
         while (true)
         {
-            transform.localScale = new Vector3(2f, 2f, 1f);
+            // transform.localScale = new Vector3(2f, 2f, 1f);
             spriteRenderer.sprite = bulletSprites[index];
             yield return new WaitForSeconds(frameRate);
             index = (index + 1) % bulletSprites.Length;
