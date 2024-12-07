@@ -4997,7 +4997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98fa47f266f3a8a4aa77d55f598b4ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHardcore: 0
+  isHardcore: 1
 --- !u!4 &161088782
 Transform:
   m_ObjectHideFlags: 0
