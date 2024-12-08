@@ -122,4 +122,9 @@ public class Player : MonoBehaviour
         isInvincible = false;
         invincibleLock = false;
     }
+
+    public int getCurrentHearts()
+    {
+        return currentHearts;
+    }
 }

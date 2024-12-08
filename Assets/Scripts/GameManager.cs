@@ -14,15 +14,16 @@ public class GameManager : MonoBehaviour
     List<List<int>> LevelRecord = new List<List<int>>();
 
     [System.Serializable]
-    public class TimeLimit
+    public class Contraint
     {
-        public List<float> time = new List<float>();
+        public int hp;
+        public float time;
     }
 
     [Header("Level Settings")]
     public int numberOfLevel = 4;
-    public List<TimeLimit> normalMode = new List<TimeLimit>();
-    public List<TimeLimit> hardcoreMode = new List<TimeLimit>();
+    public List<Contraint> normalMode = new List<Contraint>();
+    public List<Contraint> hardcoreMode = new List<Contraint>();
 
     [Header("UI Settings")]
     public GameObject buttonPrefab; 
@@ -130,28 +131,74 @@ public class GameManager : MonoBehaviour
             else
             {
                 LevelTimer leveltimer = GameObject.Find("StatusUI").transform.Find("LevelTimer").GetComponent<LevelTimer>();
+                Player p = GameObject.Find("Player").transform.Find("player").GetComponent<Player>();
                 float timeConsume = leveltimer.getElapsedTime();
-                int thisRecord = 0;
+                int curHearts = p.getCurrentHearts();
+                int thisRecord = 1, numOfStar = 1;
+                if(isHardcore)
+                {
+                    if(curHearts >= hardcoreMode[nowLevelNum].hp) 
+                    {
+                        thisRecord += 2;
+                        numOfStar++;
+                    }
+                    if(timeConsume <= hardcoreMode[nowLevelNum].time) 
+                    {
+                        thisRecord += 4;
+                        numOfStar++;
+                    }
+                }
+                else
+                {
+                    if(curHearts >= normalMode[nowLevelNum].hp) 
+                    {
+                        thisRecord += 2;
+                        numOfStar++;
+                    }
+                    if(timeConsume <= normalMode[nowLevelNum].time) 
+                    {
+                        thisRecord += 4;
+                        numOfStar++;
+                    }
+                }
+
+                int mask = 1;
                 Vector2 startPosition = new Vector2(-225, -20);
                 for(int i = 0; i < 3; i++)
                 {
                     GameObject newStar = Instantiate(starPrefab, WinCanvas.transform);
-                    if(isHardcore && timeConsume < hardcoreMode[nowLevelNum].time[i] ||
-                       !isHardcore && timeConsume < normalMode[nowLevelNum].time[i])
-                    {
-                        thisRecord++;
-                    }
-                    else newStar.GetComponent<Image>().color = Color.black;
+                    
+                    if((thisRecord & mask) == 0) newStar.GetComponent<Image>().color = Color.black;
+                    mask <<= 1;
                     
                     RectTransform starTransform = newStar.GetComponent<RectTransform>();
                     starTransform.anchoredPosition = startPosition + new Vector2(i * 225, 0);
                     starTransform.localScale = new Vector3(2f, 2f, 1f);
                 }
 
-                if(isHardcore) LevelRecord[nowLevelNum][1] = Mathf.Max(LevelRecord[nowLevelNum][1], thisRecord);
-                else LevelRecord[nowLevelNum][0] = Mathf.Max(LevelRecord[nowLevelNum][0], thisRecord);
+                if(isHardcore) 
+                {
+                    if(thisRecord == 7) LevelRecord[nowLevelNum][1] = thisRecord;
+                    else if(thisRecord == 1 || thisRecord == 5) LevelRecord[nowLevelNum][1] = Mathf.Max(LevelRecord[nowLevelNum][1], thisRecord);
+                    else 
+                    {
+                        if(LevelRecord[nowLevelNum][1] == 5) LevelRecord[nowLevelNum][1] = thisRecord;
+                        else LevelRecord[nowLevelNum][1] = Mathf.Max(LevelRecord[nowLevelNum][1], thisRecord);
+                    }
+                    
+                }
+                else 
+                {
+                    if(thisRecord == 7) LevelRecord[nowLevelNum][0] = thisRecord;
+                    else if(thisRecord == 1 || thisRecord == 5) LevelRecord[nowLevelNum][0] = Mathf.Max(LevelRecord[nowLevelNum][0], thisRecord);
+                    else 
+                    {
+                        if(LevelRecord[nowLevelNum][0] == 5) LevelRecord[nowLevelNum][0] = thisRecord;
+                        else LevelRecord[nowLevelNum][0] = Mathf.Max(LevelRecord[nowLevelNum][0], thisRecord);
+                    }
+                }
 
-                WinningMessage.text = "Congratulations!!\nYou get " + thisRecord + " star" + ((thisRecord >= 2)? "s!": "!");
+                WinningMessage.text = "Congratulations!!\nYou get " + numOfStar + " star" + ((numOfStar >= 2)? "s!": "!");
             }
             WinCanvas.SetActive(true);
         }
@@ -192,7 +239,7 @@ public class GameManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        int nowRecord;
+        int nowRecord, mask;
         Vector2 startPosition = new Vector2(-50, -100);
         for (int i = 0; i < numberOfLevel; i++)
         {
@@ -200,10 +247,13 @@ public class GameManager : MonoBehaviour
             
             if(isHardcore) nowRecord = LevelRecord[i][1];
             else nowRecord = LevelRecord[i][0];
+
+            mask = 1;
             for(int j = 0; j < 3; j++)
             {
                 GameObject newStar = Instantiate(starPrefab, newButton.transform);
-                if(j >= nowRecord) newStar.GetComponent<Image>().color = Color.black;
+                if((nowRecord & mask) == 0) newStar.GetComponent<Image>().color = Color.black;
+                mask <<= 1;
                 
                 RectTransform starTransform = newStar.GetComponent<RectTransform>();
                 starTransform.anchoredPosition = startPosition + new Vector2(j * 50, 0);
@@ -224,10 +274,12 @@ public class GameManager : MonoBehaviour
 
         if(isHardcore) nowRecord = LevelRecord[numberOfLevel][1];
         else nowRecord = LevelRecord[numberOfLevel][0];
+        mask = 1;
         for(int j = 0; j < 3; j++)
         {
             GameObject newStar = Instantiate(starPrefab, LevelSelctionMenu.transform.Find("LevelBossButton").transform);
-            if(j >= nowRecord) newStar.GetComponent<Image>().color = Color.black;
+            if((nowRecord & mask) == 0) newStar.GetComponent<Image>().color = Color.black;
+            mask <<= 1;
                 
             RectTransform starTransform = newStar.GetComponent<RectTransform>();
             starTransform.anchoredPosition = startPosition + new Vector2(j * 50, 0);

@@ -47,47 +47,27 @@ MonoBehaviour:
   isHardcore: 0
   numberOfLevel: 4
   normalMode:
-  - time:
-    - 90
-    - 60
-    - 30
-  - time:
-    - 90
-    - 60
-    - 30
-  - time:
-    - 90
-    - 60
-    - 30
-  - time:
-    - 90
-    - 60
-    - 30
-  - time:
-    - 90
-    - 60
-    - 30
+  - hp: 3
+    time: 60
+  - hp: 3
+    time: 60
+  - hp: 3
+    time: 60
+  - hp: 3
+    time: 60
+  - hp: 3
+    time: 60
   hardcoreMode:
-  - time:
-    - 120
-    - 90
-    - 60
-  - time:
-    - 120
-    - 90
-    - 60
-  - time:
-    - 120
-    - 90
-    - 60
-  - time:
-    - 120
-    - 90
-    - 60
-  - time:
-    - 1000
-    - 1000
-    - 60
+  - hp: 1
+    time: 120
+  - hp: 1
+    time: 120
+  - hp: 1
+    time: 120
+  - hp: 1
+    time: 120
+  - hp: 1
+    time: 120
   buttonPrefab: {fileID: 2650872808693175764, guid: 64f5a8c329fbc45f9b988a20b723a9af, type: 3}
   starPrefab: {fileID: 417829577299940579, guid: f005e10d9da7d41e9865c62842aa3084, type: 3}
   MainUIPrefab: {fileID: 1358016963761512999, guid: ca6e1f62c8ffd4982b116c906cc0ee5d, type: 3}
