@@ -355,8 +355,8 @@ MonoBehaviour:
   deflectTime: 0.25
   deflectCD: 0
   deflectArea: {fileID: 3169419748779239325}
-  shootTime: 0.2
-  shootCD: 0.2
+  shootTime: 0.15
+  shootCD: 0.15
   bulletPrefab: {fileID: 694583389576333484, guid: 88514e5495fa4734ab3a3d9f24cd89d3, type: 3}
   bulletInitDistance: 0.5
   shootKey: 323
@@ -403,7 +403,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.013225526, y: -0.2726067}
+  m_Offset: {x: 0.001904726, y: -0.27260673}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5296897, y: 0.5471853}
@@ -414,7 +414,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32349032, y: 1.4192169}
+  m_Size: {x: 0.30084848, y: 1.4192169}
   m_EdgeRadius: 0
 --- !u!70 &8118101515981654251
 CapsuleCollider2D:

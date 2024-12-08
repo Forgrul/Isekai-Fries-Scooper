@@ -31814,6 +31814,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7556593953639752699, guid: c54cbbaadc4a841b193d967919378722, type: 3}
+      propertyPath: upwardBulletCount
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556593953639752699, guid: c54cbbaadc4a841b193d967919378722, type: 3}
       propertyPath: foregroundCollider
       value: 
       objectReference: {fileID: 1060845928}

@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canRespawn: 1
   respawnTime: 100000000
-  ammo: 15
+  ammo: 20
 --- !u!70 &2997481849323140717
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -133,6 +133,6 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0016098022, y: 0.043176174}
-  m_Size: {x: 0.7787018, y: 3.0659847}
+  m_Offset: {x: 0.0016098022, y: -0.020066857}
+  m_Size: {x: 0.962677, y: 3.2614625}
   m_Direction: 0
