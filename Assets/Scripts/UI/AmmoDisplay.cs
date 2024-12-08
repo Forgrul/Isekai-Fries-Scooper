@@ -15,6 +15,6 @@ public class AmmoDisplay : MonoBehaviour
 
     private void Update()
     {
-        ammoText.text = "X" + playerObject.GetAmmo();
+        ammoText.text = "" + playerObject.GetAmmo();
     }
 }
