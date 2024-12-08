@@ -126,7 +126,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         if(isWin)
         {
-            TMP_Text WinningMessage = WinCanvas.transform.Find("WinningMessage").GetComponent<TMP_Text>();   
+            TMP_Text Title = WinCanvas.transform.Find("Title").GetComponent<TMP_Text>(); 
+            TMP_Text WinningMessage = WinCanvas.transform.Find("WinningMessage").GetComponent<TMP_Text>(); 
+            TMP_Text Constraint1 = WinCanvas.transform.Find("Constraint1").GetComponent<TMP_Text>(); 
+            TMP_Text Constraint2 = WinCanvas.transform.Find("Constraint2").GetComponent<TMP_Text>();   
             if(nowLevelNum == -1) WinningMessage.text = "Congratulations!!\nYou pass the tutorial stage!\nLet's start our journey!";
             else
             {
@@ -137,6 +140,8 @@ public class GameManager : MonoBehaviour
                 int thisRecord = 1, numOfStar = 1;
                 if(isHardcore)
                 {
+                    Constraint1.text = "HP > " + (hardcoreMode[nowLevelNum].hp - 1);
+                    Constraint2.text = "Time < " + hardcoreMode[nowLevelNum].time;
                     if(curHearts >= hardcoreMode[nowLevelNum].hp) 
                     {
                         thisRecord += 2;
@@ -150,6 +155,8 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
+                    Constraint1.text = "HP > " + (normalMode[nowLevelNum].hp - 1);
+                    Constraint2.text = "Time < " + normalMode[nowLevelNum].time;
                     if(curHearts >= normalMode[nowLevelNum].hp) 
                     {
                         thisRecord += 2;
@@ -163,7 +170,7 @@ public class GameManager : MonoBehaviour
                 }
 
                 int mask = 1;
-                Vector2 startPosition = new Vector2(-225, -20);
+                Vector2 startPosition = new Vector2(125, 110);
                 for(int i = 0; i < 3; i++)
                 {
                     GameObject newStar = Instantiate(starPrefab, WinCanvas.transform);
@@ -172,8 +179,8 @@ public class GameManager : MonoBehaviour
                     mask <<= 1;
                     
                     RectTransform starTransform = newStar.GetComponent<RectTransform>();
-                    starTransform.anchoredPosition = startPosition + new Vector2(i * 225, 0);
-                    starTransform.localScale = new Vector3(2f, 2f, 1f);
+                    starTransform.anchoredPosition = startPosition + new Vector2(0, i * -100);
+                    starTransform.localScale = new Vector3(1f, 1f, 1f);
                 }
 
                 if(isHardcore) 
@@ -198,7 +205,8 @@ public class GameManager : MonoBehaviour
                     }
                 }
 
-                WinningMessage.text = "Congratulations!!\nYou get " + numOfStar + " star" + ((numOfStar >= 2)? "s!": "!");
+                Title.text = "Congratulations!!\nYou get " + numOfStar + " star" + ((numOfStar >= 2)? "s!": "!");
+                WinningMessage.text = "";
             }
             WinCanvas.SetActive(true);
         }
