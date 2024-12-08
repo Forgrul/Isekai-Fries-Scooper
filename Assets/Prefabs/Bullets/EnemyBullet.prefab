@@ -165,5 +165,5 @@ MonoBehaviour:
   bounceCountMax: 2
   scatteredImage: {fileID: 0}
   deflectSpeedFactor: 3
-  deflectedColor: {r: 0.008063946, g: 0.9433962, b: 0, a: 1}
+  deflectedColor: {r: 0.06657174, g: 0.4647644, b: 0.8301887, a: 1}
   hitbackSound: {fileID: 8300000, guid: 1b844097753304d75aa1d57354bbefe5, type: 3}

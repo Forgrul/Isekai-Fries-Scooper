@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vel: 4
-  bounceCountMax: 3
-  scatteredImage: {fileID: 1731604828, guid: 3086717952f20b946bdea3ef49e120ff, type: 3}
+  bounceCountMax: 2
+  scatteredImage: {fileID: 0}
   deflectSpeedFactor: 2
   deflectedColor: {r: 0.3647059, g: 0.45882353, b: 1, a: 1}
   hitbackSound: {fileID: 8300000, guid: 1b844097753304d75aa1d57354bbefe5, type: 3}

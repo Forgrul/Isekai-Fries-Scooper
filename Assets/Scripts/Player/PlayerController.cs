@@ -248,6 +248,8 @@ public class PlayerController : MonoBehaviour
         // Control vertical movement
         float moveInputVertical = Input.GetAxisRaw("Vertical");
         float moveInputHorizontal = Input.GetAxisRaw("Horizontal");
+        if(Input.GetKey(KeyCode.Space))
+            moveInputVertical = 1f;
         if(Mathf.Abs(moveInputHorizontal) == 1f && Mathf.Abs(moveInputVertical) == 1f)
         {
             moveInputHorizontal *= 0.707f;

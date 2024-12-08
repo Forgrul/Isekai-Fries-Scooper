@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  health: 1
+  health: 100
   bulletPrefab: {fileID: 694583389576333484, guid: 79e3a1c653b91774e95232b4389c7622, type: 3}
   fireInterval: 4
   hardCoreFireIntervalFactor: 0.5
@@ -121,9 +121,8 @@ MonoBehaviour:
   divergeBulletCount: 12
   upwardWaveCount: 5
   upwardWaveInterval: 0.5
-  upwardBulletCount: 20
-  WinPanel: {fileID: 0}
-  bossCamera: {fileID: 0}
+  upwardBulletCount: 15
+  foregroundCollider: {fileID: 0}
 --- !u!50 &4703646281691647876
 Rigidbody2D:
   serializedVersion: 4

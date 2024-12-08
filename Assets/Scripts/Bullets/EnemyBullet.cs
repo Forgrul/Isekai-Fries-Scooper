@@ -86,7 +86,7 @@ public class EnemyBullet : Bullet
         PlaySound(hitbackSound);
     }
 
-    void SetUpHardcore()
+    protected virtual void SetUpHardcore()
     {
         // bounceCountMax++;
     }

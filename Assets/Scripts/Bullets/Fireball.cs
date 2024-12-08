@@ -44,4 +44,8 @@ public class Fireball : EnemyBullet
         }
     }
 
+    protected override void SetUpHardcore()
+    {
+        bounceCountMax++;
+    }
 }
