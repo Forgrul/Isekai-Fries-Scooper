@@ -33,7 +33,6 @@ public class Boss : Enemy
     Vector3 startPosition;
     Vector3 targetPosition;
 
-    public GameObject WinPanel;
 
     protected override void Start()
     {
@@ -59,6 +58,11 @@ public class Boss : Enemy
             // prevent it moves while firing
             stopMoveTimer = Mathf.Max(maxFireTime, stopMoveTimer);
             fireTimer = fireInterval; // 重置計時器
+        }
+
+        if (health <= 0)
+        {
+            GameManager.Instance.showEnd(true);
         }
     }
 
@@ -151,14 +155,4 @@ public class Boss : Enemy
         }
     }
 
-    void OnDestroy()
-    {
-        Time.timeScale = 0;
-        Transform statusUI = GameObject.Find("StatusUI")?.transform;
-        Transform LevelTimerTransform = statusUI?.Find("LevelTimer");
-        GameObject LevelTimer = LevelTimerTransform?.gameObject;
-        LevelTimer?.GetComponent<LevelTimer>().ShowCompletionTime();
-        if(WinPanel != null)
-            WinPanel.SetActive(true);
-    } 
 }

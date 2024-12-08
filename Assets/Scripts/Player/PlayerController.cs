@@ -12,6 +12,18 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;           // 判斷是否在地面上
     bool flipLocked = false;
 
+    [Header("Stamina Settings")]
+    public float maxStamina = 10f;
+
+    public float dashConsume = 0f;
+    public float deflectConsume = 2f;
+    public float dashAndDeflectConsume = 4f;
+    public float recoverWait = 0.5f;
+    public float recoverPerSec = 1f;
+
+    float nowStamina;
+    float staminaTimer = 0;
+
     [Header("Movement Settings")]
     public float moveSpeed = 5f;       // 移動速度
     public float flySpeed = 9f;        // 飛行時的移動速度
@@ -32,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public float deflectCD = 0.5f;
     public DeflectArea deflectArea;
     bool canDeflect = true;            // deflect has CD
+    bool isDeflecting = false;
 
     [Header("Shoot Settings")]
     public float shootTime = 0.2f;
@@ -161,6 +174,8 @@ public class PlayerController : MonoBehaviour
         flyXVelAnim = Animator.StringToHash("flyXVel");
         flyTriggerAnim = Animator.StringToHash("flyTrigger");
         endFlyTrigger = Animator.StringToHash("endFlyTrigger");
+
+        nowStamina = maxStamina;
     }
 
 
@@ -186,7 +201,9 @@ public class PlayerController : MonoBehaviour
             {
                 Jump();
             }
-            if(canDash && Input.GetKeyDown(dashKey))
+            if(((!isDeflecting && nowStamina >= dashConsume) || 
+                (isDeflecting && nowStamina >= dashAndDeflectConsume - deflectConsume)) 
+                && canDash && Input.GetKeyDown(dashKey))
             {
                 StartCoroutine(Dash());
             }
@@ -198,7 +215,9 @@ public class PlayerController : MonoBehaviour
             anim.SetFloat(vertVAnim, rb.velocity.y);
         }
 
-        if(canDeflect && Input.GetKeyDown(deflectKey))
+        if(((!isDashing && nowStamina >= deflectConsume) || 
+            (isDashing && nowStamina >= dashAndDeflectConsume - dashConsume))
+            && canDeflect && Input.GetKeyDown(deflectKey))
         {
             StartCoroutine(Deflect());
         }
@@ -208,6 +227,15 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Shoot());
         }
 
+        if(!(isDashing || isDeflecting))
+        {
+            staminaTimer += Time.deltaTime;
+            
+            if(staminaTimer >= recoverWait && nowStamina < maxStamina) nowStamina += recoverPerSec * Time.deltaTime;
+        }
+        else staminaTimer = 0;
+
+        if(nowStamina > maxStamina) nowStamina = maxStamina;
     }
 
     void FlyMove()
@@ -299,6 +327,9 @@ public class PlayerController : MonoBehaviour
     {
         PlayDashSound();
 
+        if(isDeflecting) nowStamina -= dashAndDeflectConsume - deflectConsume;
+        else nowStamina -= dashConsume;
+
         canDash = false;
         if(Mathf.Abs(rb.velocity.x) > Mathf.Epsilon)
             rb.velocity = new Vector3(Mathf.Sign(rb.velocity.x) * dashSpeed, 0f, 0f);
@@ -356,6 +387,12 @@ public class PlayerController : MonoBehaviour
     IEnumerator Deflect()
     {
         PlayDeflectingSound();
+
+        isDeflecting = true;
+
+        if(isDashing) nowStamina -= dashAndDeflectConsume - dashConsume;
+        else nowStamina -= deflectConsume;
+
         float angle = deflectArea.StartDeflect();
         canDeflect = false;
         anim.SetTrigger(deflectAnim);
@@ -371,6 +408,7 @@ public class PlayerController : MonoBehaviour
         anim.ResetTrigger(deflectAnim); // to prevent it register the deflect animation when flying and play the animation after flying mode end
         deflectArea.StopDeflect();
         flipLocked = false;
+        isDeflecting = false;
 
         yield return new WaitForSeconds(deflectCD);
 
@@ -422,5 +460,10 @@ public class PlayerController : MonoBehaviour
     public int GetAmmo()
     {
         return ammo;
+    }
+
+    public float GetStamina()
+    {
+        return nowStamina;
     }
 }

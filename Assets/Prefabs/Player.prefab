@@ -340,15 +340,20 @@ MonoBehaviour:
     m_Bits: 128
   CharacterSize: 1
   GScale: 3
+  maxStamina: 10
+  dashConsume: 0
+  deflectConsume: 2
+  dashAndDeflectConsume: 4
+  recoverWait: 0.5
+  recoverPerSec: 1
   moveSpeed: 7
   flySpeed: 9
   jumpForce: 15
-  myParticleSystem: {fileID: 0}
   dashSpeed: 20
   dashTime: 0.25
   fastLandingSpeed: 15
   deflectTime: 0.25
-  deflectCD: 1
+  deflectCD: 0
   deflectArea: {fileID: 3169419748779239325}
   shootTime: 0.2
   shootCD: 0.2
@@ -359,12 +364,12 @@ MonoBehaviour:
   dashKey: 304
   fastLandingKeys: 7300000012010000
   jumpKeys: 200000007700000011010000
-  dashSound: {fileID: 8300000, guid: 54ed988ce048049d7958fa55f6f14098, type: 3}
-  gun_pickSound: {fileID: 8300000, guid: d4da3f0fba9a44bfd997329d5a7f1794, type: 3}
-  gun_shotSound: {fileID: 8300000, guid: 7efb06087c0ba4ddab40d592f77158f7, type: 3}
-  item_pickSound: {fileID: 8300000, guid: 32ec64e3052ca43109c3c80964833947, type: 3}
-  walkingSound: {fileID: 8300000, guid: d7c522825027f41259316f1dff894aa7, type: 3}
-  deflectSound: {fileID: 8300000, guid: b78c29cf8dacc4137a1b3acd372001fa, type: 3}
+  dashSound: {fileID: 8300000, guid: dfe2a82d8932d498ba2fb06da845d580, type: 3}
+  gun_pickSound: {fileID: 8300000, guid: b690fa869b12541608a80102cda3a67d, type: 3}
+  gun_shotSound: {fileID: 8300000, guid: be5081ef32d05405189bc0e87bc8d45d, type: 3}
+  item_pickSound: {fileID: 8300000, guid: bc7b96542d6a9435ebd746f29f4776bb, type: 3}
+  walkingSound: {fileID: 8300000, guid: c271af570a1c64baf841133f4b95dd18, type: 3}
+  deflectSound: {fileID: 8300000, guid: 86ed013607ec3409d99add1e1148dd18, type: 3}
   walkSoundCooldown: 1
 --- !u!61 &1643912683118069532
 BoxCollider2D:
@@ -595,11 +600,10 @@ MonoBehaviour:
   maxHearts: 5
   heartPrefab: {fileID: 8009301483513755578, guid: e3edfcdea5b974cbf9bc6ce887bda16c, type: 3}
   canvasTransform: {fileID: 0}
-  LoseCanvas: {fileID: 0}
   startPosition: {x: -900, y: 480}
   heartSpacing: 100
   audioSource: {fileID: 0}
-  hurtPlayer: {fileID: 8300000, guid: 96415bde5d3524bb3a293a1800ba3bf5, type: 3}
+  hurtPlayer: {fileID: 8300000, guid: 9962a85ea2a484dddb6d7ff863ca63d1, type: 3}
 --- !u!114 &896721345475745401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1250,8 +1254,8 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0
     donutRadius: 0.2
-    m_Position: {x: -0.5, y: -0.5, z: 0}
-    m_Rotation: {x: 0, y: 0, z: -105}
+    m_Position: {x: -0.85, y: -0.4, z: 0}
+    m_Rotation: {x: 0, y: 0, z: -125}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
