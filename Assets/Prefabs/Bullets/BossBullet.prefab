@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 50
   m_Sprite: {fileID: -362105774, guid: 3086717952f20b946bdea3ef49e120ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vel: 4
-  bounceCountMax: 2
+  bounceCountMax: 3
   scatteredImage: {fileID: 1731604828, guid: 3086717952f20b946bdea3ef49e120ff, type: 3}
   deflectSpeedFactor: 2
   deflectedColor: {r: 0.3647059, g: 0.45882353, b: 1, a: 1}
-  hitbackSound: {fileID: 8300000, guid: 2c3bb3e7bfb0c409a83d80698f086b4c, type: 3}
+  hitbackSound: {fileID: 8300000, guid: 1b844097753304d75aa1d57354bbefe5, type: 3}

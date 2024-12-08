@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         currentHearts = maxHearts;
+        if(GameManager.Instance.isHardcore)
+            currentHearts = 1;
         UpdateHeartsUI();
         
         spriteRenderer = GetComponent<SpriteRenderer>();

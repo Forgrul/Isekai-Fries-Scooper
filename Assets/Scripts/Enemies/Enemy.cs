@@ -11,6 +11,7 @@ public abstract class Enemy : MonoBehaviour
     [Header("Fire Settings")]
     public GameObject bulletPrefab;
     public float fireInterval = 3f;  // 發射間隔
+    public float hardCoreFireIntervalFactor = 0.6f;
     protected float fireTimer;
 
     protected Rigidbody2D rb;
@@ -18,6 +19,8 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        if(GameManager.Instance.isHardcore)
+            SetUpHardcore();
         fireTimer = fireInterval / 2; 
     }
 
@@ -55,13 +58,14 @@ public abstract class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
     }
 
-
-
-
+    void SetUpHardcore()
+    {
+        fireInterval *= hardCoreFireIntervalFactor;
+    }
 
     //sound effects
     public AudioClip hurt_enemySound;
@@ -87,5 +91,10 @@ public abstract class Enemy : MonoBehaviour
     public void PlayHurtEnemySound()
     {
         PlaySound(hurt_enemySound);
+    }
+
+    protected virtual void Die()
+    {
+        Destroy(gameObject);
     }
 }
