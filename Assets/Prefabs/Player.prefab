@@ -348,7 +348,7 @@ MonoBehaviour:
   recoverPerSec: 1
   moveSpeed: 7
   flySpeed: 10
-  jumpForce: 15
+  jumpForce: 14.5
   dashSpeed: 20
   dashTime: 0.25
   fastLandingSpeed: 15

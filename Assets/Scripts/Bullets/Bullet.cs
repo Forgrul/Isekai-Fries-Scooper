@@ -47,7 +47,7 @@ public abstract class Bullet : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Platform") || other.gameObject.CompareTag("OneWayPlatform"))
+        if(other.gameObject.CompareTag("Platform"))
         {
             bounceCount++;
             if(bounceCountMax != 1)

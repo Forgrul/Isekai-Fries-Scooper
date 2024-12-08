@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Gate : MonoBehaviour
 {
@@ -11,24 +12,48 @@ public class Gate : MonoBehaviour
     Vector3 closePosition;
     // default is closed
     bool opened = false;
-    // Start is called before the first frame update
+    bool canMove = false;
+
+    public float switchCameraTime = 1f;
+    CinemachineBrain brain;
+    CinemachineVirtualCamera gateCamera;
+    
     void Start()
     {
         closePosition = transform.position;
         openPosition = closePosition + new Vector3(0, openHeight, 0);
+        brain = Camera.main.GetComponent<CinemachineBrain>();
+        gateCamera = GetComponent<CinemachineVirtualCamera>();
+        gateCamera.enabled = false;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        if(opened)
+        if(canMove)
             transform.position = Vector3.MoveTowards(transform.position, openPosition, openSpeed * Time.deltaTime);
-        else
-            transform.position = Vector3.MoveTowards(transform.position, closePosition, openSpeed * Time.deltaTime);
     }
     
-    public void ToggleState()
+    public void OpenGate()
     {
-        opened = !opened;
+        if(opened) return;
+        opened = true;
+        StartCoroutine(SwitchCameraAndOpenGate());
+    }
+
+    IEnumerator SwitchCameraAndOpenGate()
+    {
+        // another 2 second so player is not immediately damaged after camera restore
+        Player playerScript = FindObjectOfType<Player>().GetComponent<Player>();
+        StartCoroutine(playerScript.SetInvincible(switchCameraTime * 2 + 2f));
+
+        var followCamera = brain.ActiveVirtualCamera as CinemachineVirtualCamera;
+        gateCamera.enabled = true;
+        followCamera.enabled = false;
+        yield return new WaitForSeconds(switchCameraTime);
+        canMove = true;
+        yield return new WaitForSeconds(switchCameraTime);
+        followCamera.enabled = true;
+        gateCamera.enabled = false;
     }
 }

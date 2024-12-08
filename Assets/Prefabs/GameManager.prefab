@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8034445744344748036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 679805090994618196}
+  - component: {fileID: 756015949167515835}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &679805090994618196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034445744344748036}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 935.5119, y: 520.54095, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &756015949167515835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034445744344748036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98fa47f266f3a8a4aa77d55f598b4ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHardcore: 0
+  numberOfLevel: 4
+  normalMode:
+  - time:
+    - 90
+    - 60
+    - 30
+  - time:
+    - 90
+    - 60
+    - 30
+  - time:
+    - 90
+    - 60
+    - 30
+  - time:
+    - 90
+    - 60
+    - 30
+  - time:
+    - 90
+    - 60
+    - 30
+  hardcoreMode:
+  - time:
+    - 120
+    - 90
+    - 60
+  - time:
+    - 120
+    - 90
+    - 60
+  - time:
+    - 120
+    - 90
+    - 60
+  - time:
+    - 120
+    - 90
+    - 60
+  - time:
+    - 1000
+    - 1000
+    - 60
+  buttonPrefab: {fileID: 2650872808693175764, guid: 64f5a8c329fbc45f9b988a20b723a9af, type: 3}
+  starPrefab: {fileID: 417829577299940579, guid: f005e10d9da7d41e9865c62842aa3084, type: 3}
+  MainUIPrefab: {fileID: 1358016963761512999, guid: ca6e1f62c8ffd4982b116c906cc0ee5d, type: 3}
+  LevelSelctionMenuPrefab: {fileID: 5829293501253285663, guid: 54de6d7586d304a5fa95c7fbbcd91564, type: 3}
+  WinCanvasPrefab: {fileID: 8317978080487870629, guid: 0abca4d12c9cd43568f9b6bd3bb69e5a, type: 3}
+  LoseCanvasPrefab: {fileID: 2646935291041060270, guid: 62d9f69c17bc0441d83dceb97103bd6d, type: 3}

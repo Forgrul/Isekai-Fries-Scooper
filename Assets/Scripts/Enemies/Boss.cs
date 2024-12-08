@@ -48,6 +48,8 @@ public class Boss : Enemy
     int yVelAnim;
     int isWalkingAnim;
 
+    public CompositeCollider2D foregroundCollider;
+
     // Jump positions
     List<Vector3> positions = new List<Vector3>();
     int currentPositionIndex = 0;

@@ -35,6 +35,7 @@ public class WeakFishEnemy : Enemy
 
     protected override void Patrol()
     {
+        if(patrolDistance == 0f) return;
         float patrolLimit = startPosition.x + (movingRight ? patrolDistance : -patrolDistance);
 
         // 左右來回移動

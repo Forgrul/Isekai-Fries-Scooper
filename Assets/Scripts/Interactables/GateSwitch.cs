@@ -15,11 +15,10 @@ public class GateSwitch : MonoBehaviour
         gate = transform.parent.GetComponentInChildren<Gate>();
     }
 
-    void Update()
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if(Input.GetKeyDown(KeyCode.E) && switchCollider.IsTouching(playerCollider))
-        {
-            gate.ToggleState();
-        }
+        if(other.gameObject.CompareTag("Player"))
+            gate.OpenGate();
     }
 }

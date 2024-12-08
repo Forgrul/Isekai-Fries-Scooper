@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float heartSpacing = 80f; // 每顆愛心的水平間距
     private List<GameObject> hearts = new List<GameObject>();
     private bool isInvincible = false;
+    private bool invincibleLock = false;
     private SpriteRenderer spriteRenderer;
 
     //sound effects
@@ -81,7 +82,8 @@ public class Player : MonoBehaviour
         }
 
         spriteRenderer.enabled = true; // 確保最終是顯示狀態
-        isInvincible = false;
+        if(!invincibleLock)
+            isInvincible = false;
     }
 
     private void UpdateHeartsUI()
@@ -110,5 +112,14 @@ public class Player : MonoBehaviour
     public bool IsInvincible()
     {
         return isInvincible;
+    }
+
+    public IEnumerator SetInvincible(float duration)
+    {   
+        invincibleLock = true;
+        isInvincible = true;
+        yield return new WaitForSeconds(duration);
+        isInvincible = false;
+        invincibleLock = false;
     }
 }
