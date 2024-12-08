@@ -5515,7 +5515,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.41708994, y: 0.60186005, z: -10.048074}
+  m_LocalPosition: {x: -0.42129993, y: 0.60184, z: -10.048074}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -31143,6 +31143,10 @@ PrefabInstance:
       propertyPath: canvasTransform
       value: 
       objectReference: {fileID: 1835210571}
+    - target: {fileID: 6935067988845337092, guid: 6ba53f5c40416b04899a0e283c6787d3, type: 3}
+      propertyPath: walkingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d7c522825027f41259316f1dff894aa7, type: 3}
     - target: {fileID: 7766224675277666445, guid: 6ba53f5c40416b04899a0e283c6787d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.41
