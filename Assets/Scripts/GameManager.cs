@@ -130,7 +130,14 @@ public class GameManager : MonoBehaviour
             TMP_Text WinningMessage = WinCanvas.transform.Find("WinningMessage").GetComponent<TMP_Text>(); 
             TMP_Text Constraint1 = WinCanvas.transform.Find("Constraint1").GetComponent<TMP_Text>(); 
             TMP_Text Constraint2 = WinCanvas.transform.Find("Constraint2").GetComponent<TMP_Text>();   
-            if(nowLevelNum == -1) WinningMessage.text = "Congratulations!!\nYou pass the tutorial stage!\nLet's start our journey!";
+            if(nowLevelNum == -1) 
+            {
+                Title.text = "YOU WIN!";
+                WinningMessage.text = "Congratulations!!\nYou pass the tutorial stage!\nLet's start our journey!";
+                WinCanvas.transform.Find("Constraint0").gameObject.SetActive(false);
+                WinCanvas.transform.Find("Constraint1").gameObject.SetActive(false);
+                WinCanvas.transform.Find("Constraint2").gameObject.SetActive(false);
+            }
             else
             {
                 LevelTimer leveltimer = GameObject.Find("StatusUI").transform.Find("LevelTimer").GetComponent<LevelTimer>();

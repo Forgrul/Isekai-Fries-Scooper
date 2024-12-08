@@ -364,7 +364,7 @@ MonoBehaviour:
   dashKey: 304
   fastLandingKeys: 7300000012010000
   jumpKeys: 200000007700000011010000
-  dashSound: {fileID: 8300000, guid: 54ed988ce048049d7958fa55f6f14098, type: 3}
+  dashSound: {fileID: 8300000, guid: dfe2a82d8932d498ba2fb06da845d580, type: 3}
   gun_pickSound: {fileID: 8300000, guid: d4da3f0fba9a44bfd997329d5a7f1794, type: 3}
   gun_shotSound: {fileID: 8300000, guid: 7efb06087c0ba4ddab40d592f77158f7, type: 3}
   item_pickSound: {fileID: 8300000, guid: 32ec64e3052ca43109c3c80964833947, type: 3}
