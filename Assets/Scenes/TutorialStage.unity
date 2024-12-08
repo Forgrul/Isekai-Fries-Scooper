@@ -22679,6 +22679,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHardcore: 0
+  numberOfLevel: 4
+  normalMode: []
+  hardcoreMode: []
+  buttonPrefab: {fileID: 0}
+  starPrefab: {fileID: 0}
+  MainUIPrefab: {fileID: 0}
+  LevelSelctionMenuPrefab: {fileID: 0}
+  WinCanvasPrefab: {fileID: 0}
+  LoseCanvasPrefab: {fileID: 0}
 --- !u!4 &161088782
 Transform:
   m_ObjectHideFlags: 0
@@ -53670,6 +53679,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StatusUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3219402970592039004, guid: 2f72686d6b2ec4843952670e96a5ca96, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4410718884290739624, guid: 2f72686d6b2ec4843952670e96a5ca96, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -53963,7 +53976,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.6302042, y: -0.09324002, z: -10.048074}
+  m_LocalPosition: {x: -2.633737, y: -0.09324002, z: -10.048074}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -66748,6 +66761,10 @@ PrefabInstance:
       propertyPath: canvasTransform
       value: 
       objectReference: {fileID: 1931329484}
+    - target: {fileID: 6935067988845337092, guid: 6ba53f5c40416b04899a0e283c6787d3, type: 3}
+      propertyPath: walkingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d7c522825027f41259316f1dff894aa7, type: 3}
     - target: {fileID: 7766224675277666445, guid: 6ba53f5c40416b04899a0e283c6787d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.67
@@ -67490,7 +67507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2356459515483452088, guid: 0e2a0e7deffead14994ee757520d38a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.9595556
+      value: -7.960332
       objectReference: {fileID: 0}
     - target: {fileID: 2356459515483452088, guid: 0e2a0e7deffead14994ee757520d38a7, type: 3}
       propertyPath: m_LocalPosition.y
