@@ -47,9 +47,9 @@ GameObject:
   - component: {fileID: 6628407742570640567}
   - component: {fileID: 1779756356030204239}
   - component: {fileID: 6563136449539058936}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gate
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,8 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afceb162c1a661e49a3d15c0f4120e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openHeight: 2
-  openSpeed: 2
+  openHeight: 2.5
+  openSpeed: 2.5
   switchCameraTime: 1
 --- !u!61 &6628407742570640567
 BoxCollider2D:
@@ -258,7 +258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3847368171917980879}
   - component: {fileID: 7236842201268185673}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}

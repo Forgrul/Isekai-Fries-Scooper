@@ -53,7 +53,7 @@ public class Enemy1 : Enemy
 
     IEnumerator FireSpiral()
     {
-        int fireCount = 20;
+        int fireCount = 15;
         for(int i = 0; i < fireCount; i++)
         {
             float angle = 360f / fireCount * i;

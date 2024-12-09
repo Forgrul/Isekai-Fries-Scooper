@@ -48,24 +48,24 @@ MonoBehaviour:
   numberOfLevel: 4
   normalMode:
   - hp: 3
-    time: 60
+    time: 90
   - hp: 3
-    time: 60
+    time: 90
   - hp: 3
-    time: 60
+    time: 120
   - hp: 3
-    time: 60
+    time: 240
   - hp: 3
-    time: 60
+    time: 120
   hardcoreMode:
   - hp: 1
     time: 120
   - hp: 1
     time: 120
   - hp: 1
-    time: 120
+    time: 150
   - hp: 1
-    time: 120
+    time: 300
   - hp: 1
     time: 120
   buttonPrefab: {fileID: 2650872808693175764, guid: 64f5a8c329fbc45f9b988a20b723a9af, type: 3}

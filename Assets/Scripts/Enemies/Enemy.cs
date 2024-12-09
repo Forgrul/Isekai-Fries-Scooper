@@ -21,7 +21,7 @@ public abstract class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if(GameManager.Instance.isHardcore)
             SetUpHardcore();
-        fireTimer = fireInterval / 2; 
+        fireTimer = 1f; 
     }
 
     protected virtual void Update()

@@ -57,6 +57,7 @@ public class Boss : Enemy
     protected override void Start()
     {
         base.Start();
+        fireTimer = fireInterval / 2;
         stopMoveTimer = Random.Range(minMoveCD, maxMoveCD);
         
         startPosition = transform.position;
