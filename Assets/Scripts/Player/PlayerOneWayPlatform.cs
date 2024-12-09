@@ -9,15 +9,17 @@ public class PlayerOneWayPlatform : MonoBehaviour
     Rigidbody2D playerRb;
     bool canRecover = false;
     CompositeCollider2D platformCollider;
+    PlayerController playerController;
 
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
+        playerController = GetComponent<PlayerController>();
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        if ((playerController.IsFlying() && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))) || (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)))
         {
             if (currentOneWayPlatform != null)
             {

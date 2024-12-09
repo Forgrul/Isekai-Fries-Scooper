@@ -291,6 +291,11 @@ public class PlayerController : MonoBehaviour
         flyTimer = duration;
     }
 
+    public bool IsFlying()
+    {
+        return flyTimer > 0f;
+    }
+
     void GroundMove()
     {
         rb.gravityScale = GScale;
